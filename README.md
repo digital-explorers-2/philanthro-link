@@ -6,6 +6,7 @@ PhilanthroLink is a crowdfunding platform dedicated to connecting donors with ca
 - [Hakeem Alavi](https://github.com/HakeemAlavi)
 - [Maria Njambi](https://github.com/Njambi-M)
 - [Cindy Bosibori](https://github.com/CindyBSydney)
+- [Abigail Wairi](https://github.com/Abbymuso1)
 
 
 ## Features
