@@ -15,3 +15,6 @@ PhilanthroLink is a crowdfunding platform dedicated to connecting donors with ca
 - **Verified Charitable Projects**: All projects seeking donations on PhilanthroLink undergo thorough verification to ensure legitimacy and transparency.
 - **Community Engagement**: PhilanthroLink fosters community engagement by enabling users to discover, share, and support causes that resonate with them.
 - **User Profiles**: Users can create profiles on PhilanthroLink to track their donations, engage with other members of the community, and showcase their philanthropic efforts.
+-   -Create and customize personalized profiles with essential information such as name, bio, profile picture, and contact details.
+-   -Enable users to track their donation history.
+-   -Enable users to view their supported projects.
