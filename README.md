@@ -18,3 +18,7 @@ PhilanthroLink is a crowdfunding platform dedicated to connecting donors with ca
   - Discover various philathropy projects through the listings
   - Support causes that resonate with them
 - **User Profiles**: Users can create profiles on PhilanthroLink to track their donations, engage with other members of the community, and showcase their philanthropic efforts.
+
+## Figma Design Templates
+
+[Mockups](https://www.figma.com/file/OOLBd3X8Cqc1KdpPQDixO6/Philathrolink?type=design&node-id=0%3A1&mode=design&t=aL45rIbksp0QRkPC-1)
