@@ -14,6 +14,10 @@ PhilanthroLink is a crowdfunding platform dedicated to connecting donors with ca
 
 - **Easy Donation Process**: PhilanthroLink simplifies the donation process, allowing users to contribute to charitable projects with just a few clicks.
 - **Verified Charitable Projects**: All projects seeking donations on PhilanthroLink undergo thorough verification to ensure legitimacy and transparency.
+  - Charities can sign up their organisation.
+  - Verification will be done through documents submitted by the charities.
+  - Only verified charities will be allowed to set 
+  up their projects.  
 - **Community Engagement**: Users in PhilathroLink have the ability to do the following:
   - Discover various philathropy projects through the listings
   - Support causes that resonate with them
@@ -21,7 +25,7 @@ PhilanthroLink is a crowdfunding platform dedicated to connecting donors with ca
   - Create and customize personalized profiles with essential information such as name, bio, profile picture, and contact details.
   - Enable users to track their donation history.
   - Enable users to view their supported projects.
-  
+
 ## Figma Design Templates
 
 [Mockups](https://www.figma.com/file/OOLBd3X8Cqc1KdpPQDixO6/Philathrolink?type=design&node-id=0%3A1&mode=design&t=aL45rIbksp0QRkPC-1)
