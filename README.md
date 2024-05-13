@@ -47,3 +47,9 @@ You can view the Figma design [here](https://www.figma.com/file/OOLBd3X8Cqc1KdpP
 
 
 You can view the Figma design [here](https://www.figma.com/file/OOLBd3X8Cqc1KdpPQDixO6/Philathrolink?type=design&node-id=403%3A2&mode=design&t=FG3mvojqKXZgvZtL-1)
+
+### About Page Mockup
+![About Page Mockup](https://github.com/digital-explorers-2/philanthro-link/assets/89918147/69c64430-0863-4e43-a550-9e90d6a67ea9)
+
+
+You can view the Figma design [here](https://www.figma.com/file/fQH2SiqjdR6pCsdb9gtxyx/Philathrolink---Remaining-Pages?type=design&node-id=1%3A214&mode=design&t=9TgZzdIbAaWyi0qa-1)
