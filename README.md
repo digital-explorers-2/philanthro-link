@@ -35,4 +35,21 @@ You can view the Figma Mockup Designs [here](https://www.figma.com/file/OOLBd3X8
 
 
 You can view the Figma design [here](https://www.figma.com/file/OOLBd3X8Cqc1KdpPQDixO6/Philathrolink?type=design&node-id=508%3A3546&mode=design&t=FG3mvojqKXZgvZtL-1)
- 
+
+ ### Register Page Mockup
+![Register Page Mockup](https://github.com/digital-explorers-2/philanthro-link/assets/89918147/53ecff59-8acb-4cd1-ba63-25e4e49d3a6d)
+
+
+You can view the Figma design [here](https://www.figma.com/file/OOLBd3X8Cqc1KdpPQDixO6/Philathrolink?type=design&node-id=508%3A1733&mode=design&t=FG3mvojqKXZgvZtL-1)
+
+### Home Page Mockup
+![Home Page Mockup](https://github.com/digital-explorers-2/philanthro-link/assets/89918147/218b75c1-5745-45c2-9f15-a947d8bbf560)
+
+
+You can view the Figma design [here](https://www.figma.com/file/OOLBd3X8Cqc1KdpPQDixO6/Philathrolink?type=design&node-id=403%3A2&mode=design&t=FG3mvojqKXZgvZtL-1)
+
+### About Page Mockup
+![About Page Mockup](https://github.com/digital-explorers-2/philanthro-link/assets/89918147/69c64430-0863-4e43-a550-9e90d6a67ea9)
+
+
+You can view the Figma design [here](https://www.figma.com/file/fQH2SiqjdR6pCsdb9gtxyx/Philathrolink---Remaining-Pages?type=design&node-id=1%3A214&mode=design&t=9TgZzdIbAaWyi0qa-1)
