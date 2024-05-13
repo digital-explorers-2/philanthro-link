@@ -25,3 +25,14 @@ PhilanthroLink is a crowdfunding platform dedicated to connecting donors with ca
   - Create and customize personalized profiles with essential information such as name, bio, profile picture, and contact details.
   - Enable users to track their donation history.
   - Enable users to view their supported projects.
+    
+## Figma Design
+### Main Figma Mockups
+You can view the Figma Mockup Designs [here](https://www.figma.com/file/OOLBd3X8Cqc1KdpPQDixO6/Philathrolink?type=design&node-id=0%3A1&mode=design&t=FG3mvojqKXZgvZtL-1)
+
+### Login Page Mockup
+![Login Page Mockup](https://github.com/digital-explorers-2/philanthro-link/assets/89918147/cdb38228-a879-4483-95ad-7293b2682584)
+
+
+You can view the Figma design [here](https://www.figma.com/file/OOLBd3X8Cqc1KdpPQDixO6/Philathrolink?type=design&node-id=508%3A3546&mode=design&t=FG3mvojqKXZgvZtL-1)
+ 
