@@ -36,3 +36,8 @@ You can view the Figma Mockup Designs [here](https://www.figma.com/file/OOLBd3X8
 
 You can view the Figma design [here](https://www.figma.com/file/OOLBd3X8Cqc1KdpPQDixO6/Philathrolink?type=design&node-id=508%3A3546&mode=design&t=FG3mvojqKXZgvZtL-1)
  
+### Register Page Mockup
+![Register Page Mockup](https://github.com/digital-explorers-2/philanthro-link/assets/89918147/53ecff59-8acb-4cd1-ba63-25e4e49d3a6d)
+
+
+You can view the Figma design [here](https://www.figma.com/file/OOLBd3X8Cqc1KdpPQDixO6/Philathrolink?type=design&node-id=508%3A1733&mode=design&t=FG3mvojqKXZgvZtL-1)
