@@ -6,8 +6,8 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"; // Im
 export default function NavBar() {
   return (
     // Header section with flex layout and styling
-    <header className="sticky top-0 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6">
-
+    <header className="absolute w-full">
+      <div className="top-0 flex h-16 items-center gap-4 border-b bg-transparent px-4 md:px-6">
       {/* Navigation menu with flex layout */}
       <nav className="hidden flex-col gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6">
         {/* Link to home page with a PlaneTakeoff icon */}
@@ -65,6 +65,7 @@ export default function NavBar() {
         </Link>
         <span className="sr-only">Contact us</span> {/* Screen reader only text for accessibility */}
       </Button>
+      </div>
       </div>
     </header>
   );
