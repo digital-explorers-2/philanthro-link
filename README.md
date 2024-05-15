@@ -56,3 +56,11 @@ You can view the Figma design [here](https://www.figma.com/file/OOLBd3X8Cqc1KdpP
 
 
 You can view the Figma design [here](https://www.figma.com/design/OOLBd3X8Cqc1KdpPQDixO6/Philathrolink?node-id=508%3A1574&t=DMpKwPYHV12qD28O-1))
+
+### Donation Details Page Mockup
+![Donation details Page Mockup](https://github.com/digital-explorers-2/philanthro-link/assets/89918147/436ea63c-57d5-49ed-96fb-ac85f8b2ce30)
+
+
+You can view the Figma design [here](https://www.figma.com/design/OOLBd3X8Cqc1KdpPQDixO6/Philathrolink?node-id=630%3A2225&t=qd6lVWkVSxE0FAH7-1)
+
+
