@@ -17,7 +17,7 @@ export default function HeroSection() {
         <button className="w-[180px] h-[55px] px-8 bg-primary rounded-full text-white mr-4">
           Donate Now
         </button>
-        <button className="w-[180px] h-[55px] px-8 bg-transparent rounded-full border border-gray-300 text-white">
+        <button className="w-[180px] h-[55px] px-8 bg-transparent rounded-full border hover:bg-primary border-gray-300 text-white">
           About Us
         </button>
       </div>
