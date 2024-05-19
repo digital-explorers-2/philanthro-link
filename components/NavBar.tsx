@@ -39,13 +39,13 @@ export default function NavBar() {
         <SheetContent side="left">
           <nav className="grid gap-6 text-sm font-medium">
             <Link href="#" className="flex items-center gap-2 text-sm font-semibold">
-            <img src="/logo.png" alt="Logo" className="h-7 w-21" />
+            <img src="/logo.png" alt="Logo" className="h-7 w-21 mb-4 mt-" />
               <span className="sr-only">PhilanthroLink</span>
             </Link>
-            <Link href="#" className="text-muted-foreground hover:text-foreground">Home</Link>
-            <Link href="#" className="text-muted-foreground hover:text-foreground">About</Link>
-            <Link href="#" className="text-muted-foreground hover:text-foreground">Contact</Link>
-            <Link href="#" className="text-muted-foreground hover:text-foreground">Help</Link>
+            <Link href="#" className="text-gray-500 hover:text-primary">Home</Link>
+            <Link href="#" className="text-gray-500 hover:text-primary">About</Link>
+            <Link href="#" className="text-gray-500 hover:text-primary">Contact</Link>
+            <Link href="#" className="text-gray-500 hover:text-primary">Help</Link>
           </nav>
         </SheetContent>
       </Sheet>
