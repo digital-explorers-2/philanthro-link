@@ -46,13 +46,12 @@ You can view the Figma design [here](https://www.figma.com/file/OOLBd3X8Cqc1KdpP
 You can view the Figma design [here](https://www.figma.com/file/OOLBd3X8Cqc1KdpPQDixO6/Philathrolink?type=design&node-id=508%3A1733&mode=design&t=FG3mvojqKXZgvZtL-1)
 
 ### Home Page Mockup
-![Home Page Mockup](https://github.com/digital-explorers-2/philanthro-link/assets/89918147/218b75c1-5745-45c2-9f15-a947d8bbf560)
+![Home Page Mockup](https://github.com/digital-explorers-2/philanthro-link/assets/89918147/f246e806-9c69-4f1b-ab81-491619f66863)
 
 
-You can view the Figma design [here](https://www.figma.com/file/OOLBd3X8Cqc1KdpPQDixO6/Philathrolink?type=design&node-id=403%3A2&mode=design&t=FG3mvojqKXZgvZtL-1)
+You can view the Figma design [here](https://www.figma.com/design/OOLBd3X8Cqc1KdpPQDixO6/Philathrolink?node-id=403%3A2&t=qd6lVWkVSxE0FAH7-1)
 
 ### About Page Mockup
-![About Page Mockup](https://github.com/digital-explorers-2/philanthro-link/assets/89918147/69c64430-0863-4e43-a550-9e90d6a67ea9)
-
+![About Page Mockup](https://github.com/digital-explorers-2/philanthro-link/assets/89918147/d73504b3-fe8c-4486-b4af-9d3337e75504)
 
 You can view the Figma design [here](https://www.figma.com/design/OOLBd3X8Cqc1KdpPQDixO6/Philathrolink?node-id=508%3A1574&t=DMpKwPYHV12qD28O-1))

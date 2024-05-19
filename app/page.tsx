@@ -1,19 +1,16 @@
-import AuthButton from "../components/AuthButton";
-import { createClient } from "@/utils/supabase/server";
+import AboutSection from '@/components/AboutSection'
+import DonationSection from '@/components/DonationSection'
+import Footer from '@/components/Footer'
+import HeroSection from '@/components/HeroSection'
+import React from 'react'
 
-export default async function Index() {
-  const canInitSupabaseClient = () => {
-    // This function is just for the interactive tutorial.
-    // Feel free to remove it once you have Supabase connected.
-    try {
-      createClient();
-      return true;
-    } catch (e) {
-      return false;
-    }
-  };
-
-  const isSupabaseConnected = canInitSupabaseClient();
-
-  return <div>Home Page</div>;
+export default function page() {
+  return (
+    <div>
+      <HeroSection />
+      <DonationSection />
+      <AboutSection />
+      <Footer />
+    </div>
+  )
 }
