@@ -74,6 +74,27 @@ function DonationSection() {
             ))}
           </div>
         </div>
+
+        <div className="flex justify-center mt-10">
+          <div className="w-full max-w-[970px] flex justify-between items-center flex-wrap gap-2">
+            <div className="flex gap-2 justify-center md:justify-start flex-grow">
+              <Button className="bg-transparent text-primary hover:bg-gray-300 px-4 py-1">
+                &lt;
+              </Button>
+              {[1, 2, 3, '...', 49, 50].map((page, index) => (
+                <Button key={index} className="bg-transparent text-primary hover:bg-gray-300 px-4 py-1">
+                  {page}
+                </Button>
+              ))}
+              <Button className="bg-transparent text-primary hover:bg-gray-300 px-4 py-1">
+                &gt;
+              </Button>
+            </div>
+            <Button className="bg-transparent text-primary hover:bg-gray-300 items-center px-4 py-1 hidden md:flex">
+              Next Page &rarr;
+            </Button>
+          </div>
+        </div>
       </div>
     </div>
   );
