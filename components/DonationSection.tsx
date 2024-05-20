@@ -3,8 +3,14 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Search, Bookmark } from "lucide-react";
 import { Input } from "./ui/input";
+import { formatDate } from "@/lib/utils";
 
-function DonationSection() {
+type Props = {
+  donations: Donation[];
+  categories: Category[];
+};
+
+function DonationSection({ donations, categories }: Props) {
   return (
     <div className="p-6 bg-gray-100">
       <div className="mt-16">
@@ -31,24 +37,13 @@ function DonationSection() {
 
         <div className="flex justify-center mb-14">
           <div className="w-full max-w-[970px] flex flex-wrap justify-center gap-2">
-            {[
-              "All",
-              "Disaster",
-              "Children",
-              "Food Crisis",
-              "Health",
-              "Education",
-              "Homeless",
-              "Animal",
-              "Pandemic",
-              "War Crisis",
-            ].map((category) => (
+            {categories.map(({ id, name }) => (
               <Button
                 variant="custom"
-                key={category}
+                key={id}
                 className="rounded-full px-4 py-1"
               >
-                {category}
+                {name}
               </Button>
             ))}
           </div>
@@ -56,9 +51,9 @@ function DonationSection() {
 
         <div className="flex justify-center">
           <div className="w-full max-w-[970px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[...Array(6)].map((_, index) => (
+            {donations.map((donation) => (
               <div
-                key={index}
+                key={donation.id}
                 className="w-full bg-white shadow-md rounded-lg flex flex-col"
               >
                 <img
@@ -68,9 +63,9 @@ function DonationSection() {
                 />
                 <div className="p-4 flex flex-col flex-grow">
                   <div className="flex justify-between items-center mb-2">
-                    <h3 className="text-lg font-bold">Donation {index + 1}</h3>
+                    <h3 className="text-lg font-bold">{donation.title}</h3>
                     <span className="text-gray-500 text-sm">
-                      14th May, 2024
+                      {formatDate(donation.created_at)}
                     </span>
                   </div>
                   <p className="text-gray-500 mb-4">
@@ -78,15 +73,20 @@ function DonationSection() {
                   </p>
                   <div className="flex justify-between text-sm">
                     <span className="text-primary">
-                      Raised: <span className="text-gray-500">Ksh 20000</span>
+                      Raised:{" "}
+                      <span className="text-gray-500">{`${donation.amount_currency} ${donation.amount_received}`}</span>
                     </span>
                     <span className="text-primary">
-                      Goal: <span className="text-gray-500">Ksh 45000</span>
+                      Goal:{" "}
+                      <span className="text-gray-500">{`${donation.amount_currency} ${donation.amount_needed}`}</span>
                     </span>
                   </div>
                   <div className="mt-2">
                     <Progress
-                      value={(20000 / 45000) * 100}
+                      value={
+                        (donation.amount_received / donation.amount_needed) *
+                        100
+                      }
                       className="h-2 bg-gray-200 rounded-full"
                     >
                       <div className="h-full bg-primary rounded-full"></div>
@@ -143,3 +143,6 @@ function DonationSection() {
 }
 
 export default DonationSection;
+
+// TODO: Add descriptions to the donations, images, raised by X people in Y days
+// TODO: Add pagination, search, and category filtering
