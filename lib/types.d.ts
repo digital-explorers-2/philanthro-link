@@ -1,13 +1,14 @@
+type Status = "pending" | "verified" | "rejected";
 type Donation = {
   id: number;
   title: string;
-  description_id: int;
+  description_id: number;
   donation_count: number;
   amount_needed: number;
   amount_currency: string;
-  user_id: number;
+  user_id: string;
   category_id: number;
-  verification_status: string;
+  verification_status: Status;
   created_at: Date;
   updated_at: Date;
   amount_received: number;
@@ -15,7 +16,7 @@ type Donation = {
 
 type UserDonation = {
   id: number;
-  user_id: number;
+  user_id: string;
   donation_id: number;
   created_at: Date;
   updated_at: Date;
@@ -51,6 +52,6 @@ type User = {
 type Category = {
   id: number;
   name: string;
-  desc: string;
+  desc: string | null;
   created_at: Date;
 };
