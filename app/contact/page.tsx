@@ -96,7 +96,7 @@ export default function Contact() {
             <FormItem>
                 <FormLabel>Your message</FormLabel>
               <FormControl>
-                <Input placeholder="Enter your question or message" {...field} />
+                <Textarea placeholder="Enter your question or message" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
