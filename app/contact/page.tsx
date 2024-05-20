@@ -1,6 +1,8 @@
 "use client"
 
 import { z } from "zod"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
 
 const formSchema = z.object({
     firstName: z.string(),
@@ -10,6 +12,23 @@ const formSchema = z.object({
 })
 
 export default function Contact() {
+    // 1. Define your form.
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      message: "",
+    },
+  })
+ 
+  // 2. Define a submit handler.
+  function onSubmit(values: z.infer<typeof formSchema>) {
+    // Do something with the form values.
+    // ✅ This will be type-safe and validated.
+    console.log(values)
+  }
     return( 
     <div className="md:grid grid-cols-2 mx-auto md:h-screen m-10">
       <div className="flex flex-col justify-start items-start p-2">
