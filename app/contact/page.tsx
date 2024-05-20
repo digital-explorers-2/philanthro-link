@@ -1,3 +1,14 @@
+"use client"
+
+import { z } from "zod"
+
+const formSchema = z.object({
+    firstName: z.string(),
+    lastName: z.string(),
+    email: z.string().email({ message: "Invalid email address" }),
+    message: z.string(),
+})
+
 export default function Contact() {
     return( 
     <div className="md:grid grid-cols-2 mx-auto md:h-screen m-10">
