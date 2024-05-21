@@ -46,8 +46,7 @@ You can view the Figma design [here](https://www.figma.com/file/OOLBd3X8Cqc1KdpP
 You can view the Figma design [here](https://www.figma.com/file/OOLBd3X8Cqc1KdpPQDixO6/Philathrolink?type=design&node-id=508%3A1733&mode=design&t=FG3mvojqKXZgvZtL-1)
 
 ### Home Page Mockup
-![Home Page Mockup](https://github.com/digital-explorers-2/philanthro-link/assets/89918147/f246e806-9c69-4f1b-ab81-491619f66863)
-
+![Home Page Mockup](https://github.com/digital-explorers-2/philanthro-link/assets/89918147/e6b1edf4-8826-465f-b336-374b5ece6382)
 
 You can view the Figma design [here](https://www.figma.com/design/OOLBd3X8Cqc1KdpPQDixO6/Philathrolink?node-id=403%3A2&t=qd6lVWkVSxE0FAH7-1)
 
