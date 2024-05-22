@@ -51,6 +51,36 @@ You can view the Figma design [here](https://www.figma.com/file/OOLBd3X8Cqc1KdpP
 You can view the Figma design [here](https://www.figma.com/design/OOLBd3X8Cqc1KdpPQDixO6/Philathrolink?node-id=403%3A2&t=qd6lVWkVSxE0FAH7-1)
 
 ### About Page Mockup
-![About Page Mockup](https://github.com/digital-explorers-2/philanthro-link/assets/89918147/d73504b3-fe8c-4486-b4af-9d3337e75504)
+![About Page Mockup](https://github.com/digital-explorers-2/philanthro-link/assets/89918147/d0aa1127-6635-49be-9217-637bbf6e05b8)
 
-You can view the Figma design [here](https://www.figma.com/design/OOLBd3X8Cqc1KdpPQDixO6/Philathrolink?node-id=508%3A1574&t=DMpKwPYHV12qD28O-1))
+You can view the Figma design [here](https://www.figma.com/design/OOLBd3X8Cqc1KdpPQDixO6/Philathrolink?node-id=508%3A1574&t=DMpKwPYHV12qD28O-1)
+
+### Donation Details Page Mockup
+![Donation Details Page Mockup](https://github.com/digital-explorers-2/philanthro-link/assets/89918147/172620b5-df04-4877-95eb-2f0da6f655a0)
+
+You can view the Figma design [here](https://www.figma.com/design/OOLBd3X8Cqc1KdpPQDixO6/Philathrolink?node-id=843%3A31&t=WQOUUm30z2nJCaYb-1)
+
+### Payment Details Page Mockup
+![Payment Details Page Mockup](https://github.com/digital-explorers-2/philanthro-link/assets/89918147/2237fdfa-575d-41e0-a7b5-cc1a046d1d87)
+
+You can view the Figma design [here](https://www.figma.com/design/OOLBd3X8Cqc1KdpPQDixO6/Philathrolink?node-id=843%3A154&t=WQOUUm30z2nJCaYb-1)
+
+### User Dashboard Page Mockup
+![User Dashboard Page Mockup](https://github.com/digital-explorers-2/philanthro-link/assets/89918147/eb42f2d4-52cf-4cd9-9f6e-6600a682fb09)
+
+You can view the Figma design [here](https://www.figma.com/design/OOLBd3X8Cqc1KdpPQDixO6/Philathrolink?node-id=847%3A37&t=WQOUUm30z2nJCaYb-1)
+
+### User Donations Page Mockup
+![User Donations Page Mockup](https://github.com/digital-explorers-2/philanthro-link/assets/89918147/17010eb1-e944-49d6-be7c-5b3cedb77c0a)
+
+You can view the Figma design [here](https://www.figma.com/design/OOLBd3X8Cqc1KdpPQDixO6/Philathrolink?node-id=849%3A117&t=WQOUUm30z2nJCaYb-1)
+
+### Edit Profile Page Mockup
+![Edit Profile Page Mockup](https://github.com/digital-explorers-2/philanthro-link/assets/89918147/a652b5ec-616d-451e-8c78-3fda00e677d2)
+
+You can view the Figma design [here](https://www.figma.com/design/OOLBd3X8Cqc1KdpPQDixO6/Philathrolink?node-id=850%3A200&t=WQOUUm30z2nJCaYb-1)
+
+### Add Donation Page Mockup
+![Add Donation Page Mockup](https://github.com/digital-explorers-2/philanthro-link/assets/89918147/e7435fa8-3199-48d0-8f86-3ec83eff2546)
+
+You can view the Figma design [here](https://www.figma.com/design/OOLBd3X8Cqc1KdpPQDixO6/Philathrolink?node-id=848%3A39&t=WQOUUm30z2nJCaYb-1)
