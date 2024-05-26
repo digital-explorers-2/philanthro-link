@@ -1,3 +1,12 @@
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+  } from "@/components/ui/card"
+
 export default function DonationDetailsPage() {
 return(
     <div className="mx-auto md:h-screen">
@@ -33,8 +42,33 @@ return(
 
 
     </div>
-    
+    <div>
+        <h3>Related areas of donation</h3>
+    <Card>
+    <img className="max-w-md md:h-2/3 max-sm:max-h-81 rounded-md" src="" alt="Project image"/>
+  <CardHeader>
+    <CardTitle>Poverty in Africa</CardTitle>
+    <CardDescription>Help the children experiencing poverty</CardDescription>
+  </CardHeader>
+</Card>
+
+<Card>
+<img className="max-w-md md:h-2/3 max-sm:max-h-81 rounded-md" src="" alt="Project image"/>
+  <CardHeader>
+    <CardTitle>Sianka forest fire</CardTitle>
+    <CardDescription>Help the people affected by the fire</CardDescription>
+  </CardHeader>
+</Card>
+
+<Card>
+<img className="max-w-md md:h-2/3 max-sm:max-h-81 rounded-md" src="" alt="Project image"/>
+  <CardHeader>
+    <CardTitle>Soporo Earthquake</CardTitle>
+    <CardDescription>Help the people affected by the earthquake</CardDescription>
+  </CardHeader>
+</Card>
     </div>
 
+    </div>
 );
 }
