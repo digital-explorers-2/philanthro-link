@@ -57,7 +57,7 @@ function DonationSection({ donations, categories }: Props) {
                 className="w-full bg-white shadow-md rounded-lg flex flex-col"
               >
                 <img
-                  src="/floods.png"
+                  src={donation.descriptions.image ?? "/no-img.jpg"}
                   alt="Floods"
                   className="w-full h-[210px] object-cover rounded-t-lg"
                 />
@@ -69,7 +69,7 @@ function DonationSection({ donations, categories }: Props) {
                     </span>
                   </div>
                   <p className="text-gray-500 mb-4">
-                    Description of the donation.
+                    {donation.descriptions.subtitle}
                   </p>
                   <div className="flex justify-between text-sm">
                     <span className="text-primary">
@@ -144,5 +144,5 @@ function DonationSection({ donations, categories }: Props) {
 
 export default DonationSection;
 
-// TODO: Add descriptions to the donations, images, raised by X people in Y days
+// TODO: Add raised by X people in Y days
 // TODO: Add pagination, search, and category filtering

@@ -3,6 +3,7 @@ type Donation = {
   id: number;
   title: string;
   description_id: number;
+  descriptions: Description;
   donation_count: number;
   amount_needed: number;
   amount_currency: string;
@@ -33,11 +34,11 @@ type Reject = {
 type Description = {
   id: number;
   subtitle: string;
-  image: string;
-  summary: string;
-  solution: string;
-  challenge: string;
-  usage: string;
+  image: string | null;
+  summary: string | null;
+  solution: string | null;
+  challenge: string | null;
+  usage: string | null;
 };
 
 type User = {
