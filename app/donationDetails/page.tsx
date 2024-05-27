@@ -83,11 +83,11 @@ return(
                 <p>During these periods, flooding can occur, leading to displacement of people, destruction of property, loss of lives, and disruption of infrastructure and livelihoods. </p>
             </div>
             </div>
-            <div>
+            <div className="ml-20">
             <Card className="my-5">
             <CardHeader>
-                <CardTitle className="text-lg font-semibold"><span className="text-3xl font-medium">Sh. 2000</span> <span className="ml-20">of Ksh. 45,000</span></CardTitle>
-                <CardDescription>100 donations <span className="ml-20">Ksh.25,000 to go</span></CardDescription>
+                <CardTitle className="text-lg font-semibold"><span className="text-3xl font-medium">Sh. 2000</span> <span className="ml-40">of Ksh. 45,000</span></CardTitle>
+                <CardDescription>100 donations <span className="ml-40">Ksh.25,000 to go</span></CardDescription>
             </CardHeader>
             <CardFooter className="flex justify-between">
                 <Button variant="outline" type="button" className="mb-1 bg-black text-white w-full">Donate now</Button>
