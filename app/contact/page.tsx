@@ -42,7 +42,7 @@ export default function Contact() {
     console.log(values)
   }
     return( 
-    <div className="md:grid grid-cols-2 mx-auto md:h-screen m-20">
+      <div className="md:grid grid-cols-2 md:mx-20 md:h-screen my-20">
       <div className="flex flex-col justify-start items-start p-2 ml-7 max-sm:p-4">
         <h1 className="font-bold text-6xl mb-10">Contact us</h1>
         <h3 className="font-normal text-2xl mb-10">Feel free to reach out</h3>
