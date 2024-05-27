@@ -84,7 +84,7 @@ return(
             </div>
             </div>
             <div className="ml-20">
-            <Card className="my-5">
+            <Card className="my-5 shadow-lg rounded-md">
             <CardHeader>
                 <CardTitle className="text-lg font-semibold"><span className="text-3xl font-medium">Sh. 2000</span> <span className="ml-40">of Ksh. 45,000</span></CardTitle>
                 <CardDescription>100 donations <span className="ml-40">Ksh.25,000 to go</span></CardDescription>
@@ -97,7 +97,7 @@ return(
 
             {/* These are the cards for other values of donation */}
             {donateMoney.map((card, index) => (
-            <Card className="my-5" key={index}>
+            <Card className="my-5 shadow-lg rounded-md" key={index}>
                 <CardHeader className="flex flex-row justify-between ">
                         <CardTitle>{card.card_title} <p className="mt-2">{card.currency}</p></CardTitle>
                     <CardDescription>{card.description}</CardDescription>
