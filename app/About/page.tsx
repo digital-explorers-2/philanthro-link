@@ -10,7 +10,7 @@ export default function AboutPage() {
  Whether you're a seasoned philanthropist or just starting your journey in giving back, PhilanthroLink provides you with the tools and confidence to contribute meaningfully to the world around you.</p>
       </div>
       <div className="md:flex md:justify-center items-center max-sm:p-4">
-        <img className="max-w-md md:h-2/3 max-sm:max-h-81" src="/about.jpeg" alt="About us"/>
+        <img className="size-15" src="/about.jpeg" alt="About us"/>
       </div>
     </div>
   );
