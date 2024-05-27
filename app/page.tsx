@@ -9,9 +9,9 @@ export type DonationsObject = {
   count: number;
 };
 
-const getDonations = async (page: number) => {
+const getDonations = async (page: number, category: number) => {
   const res = await fetch(
-    `${process.env.BASE_URL}/api/donations?page=${page}`,
+    `${process.env.BASE_URL}/api/donations?page=${page}&category=${category}`,
     {
       next: { revalidate: 0 },
     }
@@ -44,7 +44,13 @@ export default async function Home({
   const page = searchParams.page
     ? parseInt(searchParams.page as string, 10)
     : 1;
-  const donationsPromise: Promise<DonationsObject> = getDonations(page);
+  const category = searchParams.category
+    ? parseInt(searchParams.category as string, 10)
+    : 0;
+  const donationsPromise: Promise<DonationsObject> = getDonations(
+    page,
+    category
+  );
   const categoriesPromise: Promise<Category[]> = getCategories();
 
   const [donations, categories] = await Promise.all([

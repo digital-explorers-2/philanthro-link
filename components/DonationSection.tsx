@@ -1,6 +1,6 @@
 "use client";
-import React from "react";
-import { Button } from "@/components/ui/button";
+import { useState, useCallback } from "react";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Search, Bookmark } from "lucide-react";
 import { Input } from "./ui/input";
@@ -13,9 +13,10 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import { formatDate } from "@/lib/utils";
+import { cn, formatDate } from "@/lib/utils";
 import { DonationsObject } from "@/app/page";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { usePathname, useSearchParams } from "next/navigation";
 
 type Props = {
   donations: DonationsObject;
@@ -23,9 +24,26 @@ type Props = {
 };
 
 function DonationSection({ donations, categories }: Props) {
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  const createQueryString = useCallback(
+    (name: string, value: string) => {
+      const params = new URLSearchParams(searchParams.toString());
+      params.set(name, value);
+
+      return params.toString();
+    },
+    [searchParams]
+  );
+
   const pageOffset = 6;
-  const [page, setPage] = React.useState(1);
   const totalPages = Math.ceil(donations.count / pageOffset);
+  const [page, setPage] = useState(
+    searchParams.get("page")
+      ? parseInt(searchParams.get("page") as string, 10)
+      : 1
+  );
 
   const handlePageChange = (newPage: number) => {
     setPage(newPage);
@@ -36,6 +54,8 @@ function DonationSection({ donations, categories }: Props) {
       console.log("Element not found");
     }
   };
+
+  const [selectedCategory, setSelectedCategory] = useState<number>(0);
 
   return (
     <div className="p-6 bg-gray-100" id="donations">
@@ -63,14 +83,34 @@ function DonationSection({ donations, categories }: Props) {
 
         <div className="flex justify-center mb-14">
           <div className="w-full max-w-[970px] flex flex-wrap justify-center gap-2">
+            <Link
+              href={pathname + "?" + createQueryString("category", "0")}
+              onClick={() => setSelectedCategory(0)}
+              className={cn(
+                `${buttonVariants({
+                  variant: selectedCategory === 0 ? "default" : "custom",
+                })} rounded-full px-4 py-1`
+              )}
+            >
+              All
+            </Link>
             {categories.map(({ id, name }) => (
-              <Button
-                variant="custom"
+              <Link
                 key={id}
-                className="rounded-full px-4 py-1"
+                href={
+                  pathname + "?" + createQueryString("category", id.toString())
+                }
+                onClick={() => {
+                  setSelectedCategory(selectedCategory === id ? 0 : id);
+                }}
+                className={cn(
+                  `${buttonVariants({
+                    variant: selectedCategory === id ? "default" : "custom",
+                  })} rounded-full px-4 py-1`
+                )}
               >
                 {name}
-              </Button>
+              </Link>
             ))}
           </div>
         </div>
@@ -149,7 +189,11 @@ function DonationSection({ donations, categories }: Props) {
                 {page > 1 && (
                   <PaginationItem>
                     <PaginationPrevious
-                      href={`?page=${page - 1}`}
+                      href={
+                        pathname +
+                        "?" +
+                        createQueryString("page", (page - 1).toString())
+                      }
                       onClick={() => handlePageChange(page - 1)}
                     />
                   </PaginationItem>
@@ -161,7 +205,11 @@ function DonationSection({ donations, categories }: Props) {
                 ).map((pageNumber) => (
                   <PaginationItem key={pageNumber}>
                     <PaginationLink
-                      href={`/?page=${pageNumber}`}
+                      href={
+                        pathname +
+                        "?" +
+                        createQueryString("page", pageNumber.toString())
+                      }
                       isActive={pageNumber === page}
                       onClick={() => handlePageChange(pageNumber)}
                     >
@@ -179,7 +227,11 @@ function DonationSection({ donations, categories }: Props) {
                 {page < totalPages && (
                   <PaginationItem>
                     <PaginationNext
-                      href={`?page=${page + 1}`}
+                      href={
+                        pathname +
+                        "?" +
+                        createQueryString("page", (page + 1).toString())
+                      }
                       onClick={() => handlePageChange(page + 1)}
                     />
                   </PaginationItem>
@@ -200,5 +252,5 @@ function DonationSection({ donations, categories }: Props) {
 export default DonationSection;
 
 // TODO: Add raised by X people in Y days
-// TODO: Add pagination, search, and category filtering
-// FIXME: make pagination smooth and safe
+// TODO: Add search
+// FIXME: make pagination, category smooth and safe

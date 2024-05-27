@@ -6,14 +6,23 @@ export async function GET(request: NextRequest) {
   let page = searchParams.get("page") || 1;
   page = parseInt(page as string, 10);
 
+  let category = searchParams.get("category") || 0;
+  category = parseInt(category as string, 10);
+
   const limit = 6;
   const supabase = createClient();
 
-  const { data: donations, error } = await supabase
+  let query = supabase
     .from("donations")
     .select(`*, descriptions(*)`)
     .order("created_at", { ascending: false })
     .range((page - 1) * limit, page * limit - 1);
+
+  if (category != 0) {
+    query = query.eq("category_id", category);
+  }
+
+  const { data: donations, error } = await query;
 
   if (error) {
     return new NextResponse(JSON.stringify({ error }), {
