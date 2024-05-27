@@ -61,7 +61,7 @@ return(
     <div className="md:grid grid-cols-2">
         <div className="flex flex-col justify-start items-start">
             <div className="md:flex md:justify-center items-center max-sm:p-4">
-                <img className="max-w-md md:h-2/3 max-sm:max-h-81 rounded-md" src="/About.jpeg" alt="About us"/>
+                <img className="my-5" src="/floods.jpeg" alt="About us"/>
             </div>
             <div> 
                 <h2 className="text-3xl font-normal my-4">Help the people affected by the Floods</h2>
