@@ -1,6 +1,6 @@
 export default function AboutPage() {
   return (
-    <div className="md:grid grid-cols-2 mx-20 md:h-screen my-20">
+    <div className="md:grid grid-cols-2 md:mx-20 md:h-screen my-20">
       <div className="flex flex-col justify-start items-start p-8">
         <h1 className="font-bold text-6xl mb-10">About</h1>
         <p className="mb-10 font-normal md:text-lg leading-7">
@@ -10,7 +10,7 @@ export default function AboutPage() {
  Whether you're a seasoned philanthropist or just starting your journey in giving back, PhilanthroLink provides you with the tools and confidence to contribute meaningfully to the world around you.</p>
       </div>
       <div className="md:flex md:justify-center items-center max-sm:p-4">
-        <img className="max-w-md md:h-2/3 max-sm:max-h-81 rounded-md ml-7" src="/about.jpeg" alt="About us"/>
+        <img className="max-w-md md:h-2/3 max-sm:max-h-81" src="/about.jpeg" alt="About us"/>
       </div>
     </div>
   );
