@@ -9,6 +9,8 @@ export async function GET(request: NextRequest) {
   let category = searchParams.get("category") || 0;
   category = parseInt(category as string, 10);
 
+  const q = searchParams.get("q");
+
   const limit = 6;
   const supabase = createClient();
 
@@ -20,6 +22,10 @@ export async function GET(request: NextRequest) {
 
   if (category != 0) {
     query = query.eq("category_id", category);
+  }
+
+  if (q) {
+    query = query.ilike("title", `%${q}%`);
   }
 
   const { data: donations, error } = await query;
@@ -38,3 +44,5 @@ export async function GET(request: NextRequest) {
     status: 200,
   });
 }
+
+// TODO: optimize search using https://supabase.com/docs/guides/database/full-text-search

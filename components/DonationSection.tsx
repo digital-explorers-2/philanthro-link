@@ -56,6 +56,7 @@ function DonationSection({ donations, categories }: Props) {
   };
 
   const [selectedCategory, setSelectedCategory] = useState<number>(0);
+  const [searchQuery, setSearchQuery] = useState<string>("");
 
   return (
     <div className="p-6 bg-gray-100" id="donations">
@@ -70,14 +71,20 @@ function DonationSection({ donations, categories }: Props) {
               type="text"
               placeholder="Find donations..."
               className="flex-grow outline-none border-none bg-transparent rounded-full text-gray-500"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
             />
-            <Button
-              variant="outline"
-              size="icon"
-              className="rounded-full ml-2 hover:border-primary"
+            <Link
+              href={pathname + "?" + createQueryString("q", searchQuery)}
+              className={cn(
+                `${buttonVariants({
+                  variant: "outline",
+                  size: "icon",
+                })} rounded-full ml-2 hover:border-primary`
+              )}
             >
               <Search className="w-6 h-6" />
-            </Button>
+            </Link>
           </div>
         </div>
 

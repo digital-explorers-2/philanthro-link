@@ -9,9 +9,24 @@ export type DonationsObject = {
   count: number;
 };
 
-const getDonations = async (page: number, category: number) => {
+const getDonations = async (
+  page: number | null,
+  category: number | null,
+  q: string | null
+) => {
+  let searchQuery = "?";
+  if (page) {
+    searchQuery += `&page=${page}`;
+  }
+  if (category) {
+    searchQuery += `&category=${category}`;
+  }
+  if (q) {
+    searchQuery += `&q=${q}`;
+  }
+
   const res = await fetch(
-    `${process.env.BASE_URL}/api/donations?page=${page}&category=${category}`,
+    `${process.env.BASE_URL}/api/donations${searchQuery}`,
     {
       next: { revalidate: 0 },
     }
@@ -43,13 +58,17 @@ export default async function Home({
 }) {
   const page = searchParams.page
     ? parseInt(searchParams.page as string, 10)
-    : 1;
+    : null;
   const category = searchParams.category
     ? parseInt(searchParams.category as string, 10)
-    : 0;
+    : null;
+
+  const q = searchParams.q ? (searchParams.q as string) : null;
+
   const donationsPromise: Promise<DonationsObject> = getDonations(
     page,
-    category
+    category,
+    q
   );
   const categoriesPromise: Promise<Category[]> = getCategories();
 
