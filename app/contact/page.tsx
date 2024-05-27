@@ -108,7 +108,7 @@ export default function Contact() {
         </form>
       </Form>
     </div>
-    <div className="md:flex md:justify-center max-sm:p-4">
+    <div className="md:flex md:justify-center mt-20 max-sm:p-4">
         <img className="w-10/12 h-4/5 max-sm:max-h-81 rounded-md" src="/contact.jpeg" alt="About us"/>
       </div>
     </div>
