@@ -1,12 +1,55 @@
 import {
     Card,
-    CardContent,
     CardDescription,
     CardFooter,
     CardHeader,
     CardTitle,
   } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+
+const donateMoney = [{
+    card_title: "15K",
+    currency: "KSH",
+    description: "emergency food, supplies and long-term aid",
+},
+{
+    card_title: "50K",
+    currency: "KSH",
+    description: "emergency food, supplies and long-term aid",
+},
+{
+    card_title: "75K",
+    currency: "KSH",
+    description: "emergency food, supplies and long-term aid",
+},
+{
+    card_title: "100K",
+    currency: "KSH",
+    description: "emergency food, supplies and long-term aid",
+},
+{
+    card_title: "500K",
+    currency: "KSH",
+    description: "emergency food, supplies and long-term aid",
+},
+]
+
+const relatedDonations = [{
+    image: "/poverty.jpeg",
+    title: "Poverty in Africa",
+    description: "Help the children experiencing poverty",
+},
+{
+    image: "/fire.jpeg",
+    title: "Sianka forest fire",
+    description: "Help the people affected by the fire",
+},
+{
+    image: "/earthquake.jpeg",
+    title: "Soporo Earthquake",
+    description: "Help the people affected by the earthquake",
+},
+]
 
 
 export default function DonationDetailsPage() {
@@ -43,114 +86,38 @@ return(
             <div>
             <Card className="my-5">
             <CardHeader>
-                <CardTitle>Sh. 2000 <span className="text-right">of Ksh. 45,000</span></CardTitle>
-                <CardDescription>100 donations <span>Ksh.25,000 to go</span></CardDescription>
+                <CardTitle className="text-lg font-semibold"><span className="text-3xl font-medium">Sh. 2000</span> <span className="ml-20">of Ksh. 45,000</span></CardTitle>
+                <CardDescription>100 donations <span className="ml-20">Ksh.25,000 to go</span></CardDescription>
             </CardHeader>
             <CardFooter className="flex justify-between">
                 <Button variant="outline" type="button" className="mb-1 bg-black text-white w-full">Donate now</Button>
             </CardFooter>
             </Card>
 
-                            {/* These are the cards for other values of donation */}
-            <div>
-            <Card className="my-5">
-                <CardHeader className="flex justify-between ">
-                    <div className="flex text-left">
-                        <CardTitle>15K <p>KSH</p></CardTitle>
-                    
-                    <div className=" flex text-right">
-                    <CardDescription>emergency food, supplies and long-term aid</CardDescription>
-                    </div>
-                    </div>
+
+            {/* These are the cards for other values of donation */}
+            {donateMoney.map((card, index) => (
+            <Card className="my-5" key={index}>
+                <CardHeader className="flex flex-row justify-between ">
+                        <CardTitle>{card.card_title} <p className="mt-2">{card.currency}</p></CardTitle>
+                    <CardDescription>{card.description}</CardDescription>
                 </CardHeader>
             </Card>
-            </div>
-
-            <div>
-            <Card className="my-5">
-                <CardHeader className="flex justify-between w-full">
-                    <div className="flex text-left">
-                        <CardTitle>50K <p>KSH</p></CardTitle>
-                    
-                    <div className=" flex text-right">
-                    <CardDescription>emergency food, supplies and long-term aid</CardDescription>
-                    </div>
-                    </div>
-                </CardHeader>
-            </Card>
-            </div>
-
-            <div>
-            <Card className="my-5">
-                <CardHeader className="flex justify-between w-full">
-                    <div className="flex text-left">
-                        <CardTitle>75K <p>KSH</p></CardTitle>
-                    
-                    <div className=" flex text-right">
-                    <CardDescription>emergency food, supplies and long-term aid</CardDescription>
-                    </div>
-                    </div>
-                </CardHeader>
-            </Card>
-            </div>
-
-            <div>
-            <Card className="my-5">
-                <CardHeader className="flex justify-between w-full">
-                    <div className="flex text-left">
-                        <CardTitle>100K <p>KSH</p></CardTitle>
-                    
-                    <div className=" flex text-right">
-                    <CardDescription>emergency food, supplies and long-term aid</CardDescription>
-                    </div>
-                    </div>
-                </CardHeader>
-            </Card>
-            </div>
-
-            <div>
-            <Card className="my-5">
-                <CardHeader className="flex justify-between w-full">
-                    <div className="flex text-left">
-                        <CardTitle>500K <p>KSH</p></CardTitle>
-                    
-                    <div className=" flex text-right">
-                    <CardDescription>emergency food, supplies and long-term aid</CardDescription>
-                    </div>
-                    </div>
-                </CardHeader>
-            </Card>
-            </div>
-
-
+            ))}
     </div>
     </div>
     <div>
     <h3 className="text-2xl font-normal my-4">Related areas of donation</h3>
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+    {relatedDonations.map((card, index) => (
         <Card className="my-5">
-            <img className="max-w-md md:h-2/3 max-sm:max-h-81 rounded-md" src="" alt="Project image"/>
+        <img className="w-full h-48" src={card.image} alt="Project image"/>
             <CardHeader>
-                <CardTitle className="text-xl font-medium">Poverty in Africa</CardTitle>
-                <CardDescription>Help the children experiencing poverty</CardDescription>
+                <CardTitle className="text-xl font-medium">{card.title}</CardTitle>
+                <CardDescription>{card.description}</CardDescription>
             </CardHeader>
         </Card>
-
-        <Card className="my-5">
-            <img className="max-w-md md:h-2/3 max-sm:max-h-81 rounded-md" src="" alt="Project image"/>
-            <CardHeader>
-                <CardTitle className="text-xl font-medium">Sianka forest fire</CardTitle>
-                <CardDescription>Help the people affected by the fire</CardDescription>
-            </CardHeader>
-        </Card>
-
-        <Card className="my-5">
-            <img className="max-w-md md:h-2/3 max-sm:max-h-81 rounded-md" src="" alt="Project image"/>
-            <CardHeader>
-                <CardTitle className="text-xl font-medium">Soporo Earthquake</CardTitle>
-                <CardDescription>Help the people affected by the earthquake</CardDescription>
-            </CardHeader>
-        </Card>
+    ))}
     </div>
 
     </div>
