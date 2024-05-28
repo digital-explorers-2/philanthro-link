@@ -81,6 +81,6 @@ You can view the Figma design [here](https://www.figma.com/design/OOLBd3X8Cqc1Kd
 You can view the Figma design [here](https://www.figma.com/design/OOLBd3X8Cqc1KdpPQDixO6/Philathrolink?node-id=850%3A200&t=WQOUUm30z2nJCaYb-1)
 
 ### Add Donation Page Mockup
-![Add Donation Page Mockup](https://github.com/digital-explorers-2/philanthro-link/assets/89918147/e7435fa8-3199-48d0-8f86-3ec83eff2546)
+![Add Donations - Maria](https://github.com/digital-explorers-2/philanthro-link/assets/89918147/0d692331-93cf-4b1d-8688-7dca79a40b3b)
 
 You can view the Figma design [here](https://www.figma.com/design/OOLBd3X8Cqc1KdpPQDixO6/Philathrolink?node-id=848%3A39&t=WQOUUm30z2nJCaYb-1)
