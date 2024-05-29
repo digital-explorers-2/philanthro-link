@@ -57,6 +57,6 @@
     @apply bg-background text-foreground;
   }
 }
-.justify-par{
+.justify-par {
   text-align: justify;
 }

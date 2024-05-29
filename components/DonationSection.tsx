@@ -34,7 +34,7 @@ function DonationSection({ donations, categories }: Props) {
 
       return params.toString();
     },
-    [searchParams]
+    [searchParams],
   );
 
   const pageOffset = 6;
@@ -42,7 +42,7 @@ function DonationSection({ donations, categories }: Props) {
   const [page, setPage] = useState(
     searchParams.get("page")
       ? parseInt(searchParams.get("page") as string, 10)
-      : 1
+      : 1,
   );
 
   const handlePageChange = (newPage: number) => {
@@ -80,7 +80,7 @@ function DonationSection({ donations, categories }: Props) {
                 `${buttonVariants({
                   variant: "outline",
                   size: "icon",
-                })} rounded-full ml-2 hover:border-primary`
+                })} rounded-full ml-2 hover:border-primary`,
               )}
             >
               <Search className="w-6 h-6" />
@@ -96,7 +96,7 @@ function DonationSection({ donations, categories }: Props) {
               className={cn(
                 `${buttonVariants({
                   variant: selectedCategory === 0 ? "default" : "custom",
-                })} rounded-full px-4 py-1`
+                })} rounded-full px-4 py-1`,
               )}
             >
               All
@@ -113,7 +113,7 @@ function DonationSection({ donations, categories }: Props) {
                 className={cn(
                   `${buttonVariants({
                     variant: selectedCategory === id ? "default" : "custom",
-                  })} rounded-full px-4 py-1`
+                  })} rounded-full px-4 py-1`,
                 )}
               >
                 {name}
@@ -208,7 +208,7 @@ function DonationSection({ donations, categories }: Props) {
 
                 {Array.from(
                   { length: Math.min(totalPages - page + 1, 3) },
-                  (_, i) => page + i
+                  (_, i) => page + i,
                 ).map((pageNumber) => (
                   <PaginationItem key={pageNumber}>
                     <PaginationLink
