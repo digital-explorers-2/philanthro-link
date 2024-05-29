@@ -12,7 +12,7 @@ export type DonationsObject = {
 const getDonations = async (
   page: number | null,
   category: number | null,
-  q: string | null
+  q: string | null,
 ) => {
   let searchQuery = "?";
   if (page) {
@@ -29,7 +29,7 @@ const getDonations = async (
     `${process.env.BASE_URL}/api/donations${searchQuery}`,
     {
       next: { revalidate: 0 },
-    }
+    },
   );
 
   if (!res.ok) {
@@ -68,7 +68,7 @@ export default async function Home({
   const donationsPromise: Promise<DonationsObject> = getDonations(
     page,
     category,
-    q
+    q,
   );
   const categoriesPromise: Promise<Category[]> = getCategories();
 
