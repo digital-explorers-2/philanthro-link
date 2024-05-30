@@ -1,0 +1,294 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Landing page snapshot unchanged renders about section 1`] = `
+<div>
+  <div
+    class="p-6 bg-gray-100"
+  >
+    <div
+      class="mt-4 mx-auto max-w-[970px]"
+    >
+      <p
+        class="text-sm text-gray-500 mb-4 mt-10"
+      >
+        MODERN CROWDFUNDING PLATFORM
+      </p>
+      <h2
+        class="text-3xl font-bold font-dm-sans mb-10"
+      >
+        <span
+          class="text-black"
+        >
+          Distribute aid
+        </span>
+        <span
+          class="text-primary"
+        >
+           easily, quickly,
+        </span>
+        <br />
+        <span
+          class="text-primary"
+        >
+           and transparently.
+        </span>
+      </h2>
+      <div
+        class="flex flex-col md:flex-row items-center"
+      >
+        <img
+          alt="Phone"
+          class="w-screen-phone mb-4 md:mr-4 md:mb-0 pr-6 hidden md:block"
+          src="/phone.png"
+        />
+        <div
+          class="md:ml-4"
+        >
+          <p
+            class="text-gray-600 mb-4 md:text-left"
+          >
+            PhilanthroLink is a crowdfunding platform dedicated to connecting donors with causes they care about. It provides a seamless way for individuals and organizations to donate to verified charitable projects while fostering a sense of community and collaboration in the realm of philanthropy.
+          </p>
+          <a
+            class="text-black underline block md:text-left pb-6"
+            href="#"
+          >
+            Read more
+          </a>
+          <h3
+            class="text-2xl font-bold mt-8 mb-4 text-center md:text-left pb-6"
+          >
+            Frequently asked questions
+          </h3>
+          <div
+            class="bg-white shadow-md rounded-lg mb-4 p-4"
+          >
+            <div
+              data-state="closed"
+            >
+              <button
+                aria-controls="radix-:r0:"
+                aria-expanded="false"
+                class="font-semibold text-primary cursor-pointer my-2"
+                data-state="closed"
+                type="button"
+              >
+                Lorem ipsum sit dolor?
+              </button>
+              <div
+                data-state="closed"
+                hidden=""
+                id="radix-:r0:"
+                style=""
+              />
+            </div>
+          </div>
+          <div
+            class="bg-white shadow-md rounded-lg mb-4 p-4"
+          >
+            <div
+              data-state="closed"
+            >
+              <button
+                aria-controls="radix-:r1:"
+                aria-expanded="false"
+                class="font-semibold text-primary cursor-pointer my-2"
+                data-state="closed"
+                type="button"
+              >
+                Lorem ipsum sit dolor?
+              </button>
+              <div
+                data-state="closed"
+                hidden=""
+                id="radix-:r1:"
+                style=""
+              />
+            </div>
+          </div>
+          <div
+            class="bg-white shadow-md rounded-lg mb-8 p-4"
+          >
+            <div
+              data-state="closed"
+            >
+              <button
+                aria-controls="radix-:r2:"
+                aria-expanded="false"
+                class="font-semibold text-primary cursor-pointer my-2"
+                data-state="closed"
+                type="button"
+              >
+                Lorem ipsum sit dolor?
+              </button>
+              <div
+                data-state="closed"
+                hidden=""
+                id="radix-:r2:"
+                style=""
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <p
+        class="text-sm text-gray-500 mb-4 mt-16"
+      >
+        HUMANITARIAN MISSION
+      </p>
+      <h2
+        class="text-3xl font-bold font-dm-sans mb-10 md:text-left"
+      >
+        <span
+          class="text-black"
+        >
+          Help the affected by
+        </span>
+        <br />
+        <span
+          class="text-primary"
+        >
+           disaster, shortage,
+        </span>
+        <br />
+        <span
+          class="text-primary"
+        >
+           and emergency relief.
+        </span>
+      </h2>
+      <div
+        class="flex flex-col md:flex-row items-center"
+      >
+        <div
+          class="md:mr-4 md:mb-0"
+        >
+          <p
+            class="text-gray-600 mb-4 md:text-left"
+          >
+            <span
+              class="text-primary"
+            >
+              22,690 
+            </span>
+            Donations have been verified and still active.
+          </p>
+          <p
+            class="text-gray-600 mb-4 md:text-left"
+          >
+            <span
+              class="text-primary"
+            >
+              6,450 
+            </span>
+            Donations have been distributed to disaster-affected areas.
+          </p>
+          <p
+            class="text-gray-600 mb-4 md:text-left"
+          >
+            <span
+              class="text-primary"
+            >
+              1.4 Billion 
+            </span>
+            total funds raised so far.
+          </p>
+          <p
+            class="text-gray-600 mb-4 md:text-left"
+          >
+            <span
+              class="text-primary"
+            >
+              10,517 
+            </span>
+            donations have been distributed to the needy.
+          </p>
+          <p
+            class="text-gray-600 mb-4 md:text-left"
+          >
+            <span
+              class="text-primary"
+            >
+              5,058 
+            </span>
+            donations were distributed to social foundations and orphanages.
+          </p>
+          <p
+            class="text-gray-600 mb-4 md:text-left"
+          >
+            <span
+              class="text-primary"
+            >
+              4,803 
+            </span>
+            donations have been distributed to people in emergency situations.
+          </p>
+        </div>
+        <img
+          alt="About Circle"
+          class="w-[314px] h-[331px] mt-10 md:mt-0 md:ml-auto"
+          src="/about-circle.png"
+        />
+      </div>
+      <div
+        class="hidden md:block shadow-md rounded-2xl mb-4 mt-20"
+      >
+        <img
+          alt="Contact Banner"
+          class="w-full h-[220px]"
+          src="/contact-banner.png"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Landing page snapshot unchanged renders hero section 1`] = `
+<div>
+  <div
+    class="relative flex flex-col items-center justify-center min-h-screen px-6 sm:px-12 md:px-24 lg:px-32 xl:px-48 py-8"
+  >
+    <h1
+      class="text-4xl md:text-5xl font-bold text-center font-dm-sans text-primary mb-4 md:mb-8"
+    >
+      <span>
+        Happiness
+      </span>
+      <span
+        class="text-white"
+      >
+         comes from
+      </span>
+      <br />
+      <span>
+        your action.
+      </span>
+    </h1>
+    <p
+      class="text-base md:text-lg font-normal text-center text-white mb-4 md:mb-8"
+    >
+      Be a part of the breakthrough and make someone's dream come true.
+    </p>
+    <img
+      alt="Hero"
+      class="absolute inset-0 object-cover w-full h-full brightness-50 z-[-1]"
+      src="/hero-bg.jpg"
+    />
+    <div
+      class="flex flex-row mt-4 gap-4"
+    >
+      <button
+        class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 py-2 rounded-full px-10"
+      >
+        Donate now
+      </button>
+      <button
+        class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input hover:bg-accent h-10 py-2 rounded-full px-10 bg-transparent text-white hover:text-black"
+      >
+        About us
+      </button>
+    </div>
+  </div>
+</div>
+`;
