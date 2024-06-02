@@ -57,3 +57,6 @@
     @apply bg-background text-foreground;
   }
 }
+.justify-par {
+  text-align: justify;
+}
