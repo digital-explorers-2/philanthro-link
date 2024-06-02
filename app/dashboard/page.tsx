@@ -8,7 +8,6 @@ import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { Button } from "@/components/ui/button"
-import { Checkbox } from "@/components/ui/checkbox"
 import { toast } from "@/components/ui/use-toast"
 
 import {
@@ -22,21 +21,6 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 
-const currency = [
-  {
-    id: "kes",
-    label: "KES",
-  },
-  {
-    id: "usd",
-    label: "USD",
-  },
-  {
-    id: "eur",
-    label: "EUR",
-  },
-]
- 
 const formSchema = z.object({
   main_title: z.string(),
   subtitle: z.string(),
@@ -45,9 +29,8 @@ const formSchema = z.object({
   solution: z.string(),
   usage: z.string(),
   amount: z.number(),
-  currency: z.array(z.string()).refine((value) => value.some((item) => item), {
-    message: "You have to select at least one item.",
-  }),  image: z
+  currency: z.string(),
+  image: z
     .any()
     .refine((file) => file instanceof File, {
       message: 'Image is required',
@@ -76,7 +59,7 @@ function DashboardPage() {
       solution: "",
       usage: "",
       amount: 0,
-      currency: ["kes"],  
+      currency: "kes",  
       },
   })
  
@@ -328,18 +311,7 @@ function DashboardPage() {
           <FormItem>
             <FormLabel>Currency</FormLabel>
             <FormControl>
-                          <Checkbox
-                            checked={field.value?.includes(currency.id)}
-                            onCheckedChange={(checked) => {
-                              return checked
-                                ? field.onChange([...field.value, currency.id])
-                                : field.onChange(
-                                    field.value?.filter(
-                                      (value) => value !== currency.id
-                                    )
-                                  )
-                            }}
-                          />
+              <Input placeholder="Enter currency" {...field} />
                         </FormControl>
             <FormMessage />
           </FormItem>
