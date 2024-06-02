@@ -8,6 +8,9 @@ import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { Button } from "@/components/ui/button"
+import { Checkbox } from "@/components/ui/checkbox"
+import { toast } from "@/components/ui/use-toast"
+
 import {
   Form,
   FormControl,
@@ -18,6 +21,21 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+
+const currency = [
+  {
+    id: "kes",
+    label: "KES",
+  },
+  {
+    id: "usd",
+    label: "USD",
+  },
+  {
+    id: "eur",
+    label: "EUR",
+  },
+]
  
 const formSchema = z.object({
   main_title: z.string(),
@@ -27,8 +45,9 @@ const formSchema = z.object({
   solution: z.string(),
   usage: z.string(),
   amount: z.number(),
-  currency: z.string(),
-  image: z
+  currency: z.array(z.string()).refine((value) => value.some((item) => item), {
+    message: "You have to select at least one item.",
+  }),  image: z
     .any()
     .refine((file) => file instanceof File, {
       message: 'Image is required',
@@ -45,6 +64,7 @@ const formSchema = z.object({
     ),
 })
 
+
 function DashboardPage() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -56,15 +76,21 @@ function DashboardPage() {
       solution: "",
       usage: "",
       amount: 0,
-      currency: "KES",
-    },
+      currency: ["kes"],  
+      },
   })
  
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values)
+  function onSubmit(data: z.infer<typeof formSchema>) {
+    toast({
+      title: "You submitted the following values:",
+      description: (
+        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
+        </pre>
+      ),
+    })
+    console.log(data);
   }
   return (
     <div className="flex">
@@ -301,6 +327,20 @@ function DashboardPage() {
         render={({ field }) => (
           <FormItem>
             <FormLabel>Currency</FormLabel>
+            <FormControl>
+                          <Checkbox
+                            checked={field.value?.includes(currency.id)}
+                            onCheckedChange={(checked) => {
+                              return checked
+                                ? field.onChange([...field.value, currency.id])
+                                : field.onChange(
+                                    field.value?.filter(
+                                      (value) => value !== currency.id
+                                    )
+                                  )
+                            }}
+                          />
+                        </FormControl>
             <FormMessage />
           </FormItem>
         )}
