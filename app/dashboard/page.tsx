@@ -4,7 +4,8 @@ import { Home, Plus, List, Edit, LogOut } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { z } from "zod"
-
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
  
 const formSchema = z.object({
   main_title: z.string(),
@@ -18,6 +19,26 @@ const formSchema = z.object({
 })
 
 function DashboardPage() {
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      main_title: "",
+      subtitle: "",
+      category: "",
+      challenge: "",
+      solution: "",
+      usage: "",
+      amount: 0,
+      currency: "KES",
+    },
+  })
+ 
+  // 2. Define a submit handler.
+  function onSubmit(values: z.infer<typeof formSchema>) {
+    // Do something with the form values.
+    // ✅ This will be type-safe and validated.
+    console.log(values)
+  }
   return (
     <div className="flex">
       {/* Sidebar */}
