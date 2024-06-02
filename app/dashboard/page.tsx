@@ -3,6 +3,19 @@ import Link from 'next/link';
 import { Home, Plus, List, Edit, LogOut } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { z } from "zod"
+
+ 
+const formSchema = z.object({
+  main_title: z.string(),
+  subtitle: z.string(),
+  category: z.string(),
+  challenge: z.string(),
+  solution: z.string(),
+  usage: z.string(),
+  amount: z.number(),
+  currency: z.string(),
+})
 
 function DashboardPage() {
   return (
@@ -128,6 +141,7 @@ function DashboardPage() {
             <TabsContent value="add-donations">
             <h1 className="text-2xl font-semibold mb-4">Add Donations</h1>
               <p className="text-gray-500 mb-6">Create Donation</p>
+
 
 
             </TabsContent>
