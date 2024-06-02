@@ -16,6 +16,21 @@ const formSchema = z.object({
   usage: z.string(),
   amount: z.number(),
   currency: z.string(),
+  image: z
+    .any()
+    .refine((file) => file instanceof File, {
+      message: 'Image is required',
+    })
+    .refine((file) => file.size <= 5 * 1024 * 1024, {
+      message: 'Max file size is 5MB',
+    })
+    .refine(
+      (file) =>
+        ['image/jpeg', 'image/png', 'image/gif'].includes(file.type),
+      {
+        message: 'Only .jpg, .png, .gif formats are supported',
+      }
+    ),
 })
 
 function DashboardPage() {
