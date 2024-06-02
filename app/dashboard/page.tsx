@@ -125,6 +125,12 @@ function DashboardPage() {
                 </div>
               </div>
             </TabsContent>
+            <TabsContent value="add-donations">
+            <h1 className="text-2xl font-semibold mb-4">Add Donations</h1>
+              <p className="text-gray-500 mb-6">Create Donation</p>
+
+
+            </TabsContent>
 
             <TabsContent value="donations">
               <h1 className="text-2xl font-semibold mb-4">Donations</h1>
