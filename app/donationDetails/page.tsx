@@ -112,14 +112,14 @@ export default function DonationDetailsPage() {
           </div>
           <div>
             <h2 className="text-3xl font-normal my-4">Challenge</h2>
-            <p>
+            <p className="justify-par">
               Floods in Kenya are a recurring natural disaster, often caused by
               heavy rainfall, overflowing rivers, or inadequate drainage
               systems, especially in urban areas. Kenya typically experiences
               two rainy seasons: the long rains from March to May and the short
               rains from October to December.{" "}
             </p>
-            <p>
+            <p className="justify-par">
               During these periods, flooding can occur, leading to displacement
               of people, destruction of property, loss of lives, and disruption
               of infrastructure and livelihoods.{" "}
@@ -127,14 +127,14 @@ export default function DonationDetailsPage() {
           </div>
           <div>
             <h2 className="text-3xl font-normal my-4">Solution</h2>
-            <p>
+            <p className="justify-par">
               Floods in Kenya are a recurring natural disaster, often caused by
               heavy rainfall, overflowing rivers, or inadequate drainage
               systems, especially in urban areas. Kenya typically experiences
               two rainy seasons: the long rains from March to May and the short
               rains from October to December.{" "}
             </p>
-            <p>
+            <p className="justify-par">
               During these periods, flooding can occur, leading to displacement
               of people, destruction of property, loss of lives, and disruption
               of infrastructure and livelihoods.{" "}
@@ -144,14 +144,14 @@ export default function DonationDetailsPage() {
             <h2 className="text-3xl font-normal my-4">
               How your donation will be used
             </h2>
-            <p>
+            <p className="justify-par">
               Floods in Kenya are a recurring natural disaster, often caused by
               heavy rainfall, overflowing rivers, or inadequate drainage
               systems, especially in urban areas. Kenya typically experiences
               two rainy seasons: the long rains from March to May and the short
               rains from October to December.{" "}
             </p>
-            <p>
+            <p className="justify-par">
               During these periods, flooding can occur, leading to displacement
               of people, destruction of property, loss of lives, and disruption
               of infrastructure and livelihoods.{" "}
