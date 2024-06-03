@@ -77,7 +77,7 @@ function DashboardPage() {
   return (
     <div className="flex">
       {/* Sidebar */}
-      <aside className="w-64 bg-white text-black h-screen p-6 border-r border-gray-200">
+      <aside className="hidden md:block w-64 bg-white text-black h-screen p-6 border-r border-gray-200">
         {/* Logo */}
         <Link
           href="#"
@@ -138,7 +138,7 @@ function DashboardPage() {
       </aside>
 
       {/* Main Content */}
-      <div className="flex-grow p-6 ml-12">
+      <div className="flex-grow p-6 md:ml-12">
         <div className="flex justify-between items-center mb-6">
           <Tabs defaultValue="dashboard" className="flex-grow">
             <div className="flex justify-between items-center">
