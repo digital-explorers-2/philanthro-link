@@ -48,6 +48,92 @@ export default function ProfilePage() {
     console.log(data);
   }
   return (
+    <div className="flex">
+            <SideBar />
+            <div className="flex-grow p-6 md:ml-12">
+            <h1 className="text-2xl font-semibold mb-4">Edit Profile</h1>
+              <p className="text-gray-500 mb-6">Summary</p>
+              <h1 className="text-2xl font-semibold mb-4">Helena Hills</h1>
+              <Form {...form}>
+                <form
+                  onSubmit={form.handleSubmit(onSubmit)}
+                  className="space-y-8"
+                >
+                  <FormField
+              control={form.control}
+              name="username"
+              render={({ field }) => (
+                <FormItem>
+          <FormLabel>Username</FormLabel>
+
+                  <FormControl>
+                    <Input placeholder="@username123" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+                  <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                              <FormLabel>Email</FormLabel>
+
+                  <FormControl>
+                    <Input placeholder="email@domain.com" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="changePassword"
+              render={({ field }) => (
+                <FormItem>
+                                                  <FormLabel>Change Password</FormLabel>
+
+                  <FormControl>
+                    <Input
+                      type="password"
+                      placeholder="Enter new password"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="confirmPassword"
+              render={({ field }) => (
+                <FormItem>
+                                                  <FormLabel>Confirm Password</FormLabel>
+
+                  <FormControl>
+                    <Input
+                      type="password"
+                      placeholder="Re-enter new password"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+                  <Button
+                    variant="outline"
+                    type="submit"
+                    className="mb-1 bg-black text-white w-full"
+                  >
+                    Submit
+                  </Button>
+                </form>
+              </Form>
+        </div>
+        </div>
    
   );
 }
