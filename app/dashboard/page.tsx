@@ -9,6 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { Button } from "@/components/ui/button"
 import { toast } from "@/components/ui/use-toast"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 
 import {
   Form,
@@ -29,7 +30,9 @@ const formSchema = z.object({
   solution: z.string(),
   usage: z.string(),
   amount: z.number(),
-  currency: z.string(),
+  currency: z.enum(["KES", "USD", "EUR"], {
+    required_error: "You need to select a currency.",
+  }),
   image: z
     .any()
     .refine((file) => file instanceof File, {
@@ -59,7 +62,6 @@ function DashboardPage() {
       solution: "",
       usage: "",
       amount: 0,
-      currency: "kes",  
       },
   })
  
@@ -311,8 +313,35 @@ function DashboardPage() {
           <FormItem>
             <FormLabel>Currency</FormLabel>
             <FormControl>
-              <Input placeholder="Enter currency" {...field} />
-                        </FormControl>
+                <RadioGroup
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                  className="flex flex-col space-y-1"
+                >
+                  <FormItem className="flex items-center space-x-3 space-y-0">
+                    <FormControl>
+                      <RadioGroupItem value="KES" />
+                    </FormControl>
+                    <FormLabel className="font-normal">
+                      KES
+                    </FormLabel>
+                  </FormItem>
+                  <FormItem className="flex items-center space-x-3 space-y-0">
+                    <FormControl>
+                      <RadioGroupItem value="USD" />
+                    </FormControl>
+                    <FormLabel className="font-normal">
+                      USD
+                    </FormLabel>
+                  </FormItem>
+                  <FormItem className="flex items-center space-x-3 space-y-0">
+                    <FormControl>
+                      <RadioGroupItem value="EUR" />
+                    </FormControl>
+                    <FormLabel className="font-normal">EUR</FormLabel>
+                  </FormItem>
+                </RadioGroup>
+              </FormControl>
             <FormMessage />
           </FormItem>
         )}
