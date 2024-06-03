@@ -49,22 +49,19 @@ export default function ProfilePage() {
   }
   return (
     <div className="flex">
-            <SideBar />
-            <div className="flex-grow p-6 md:ml-12">
-            <h1 className="text-2xl font-semibold mb-4">Edit Profile</h1>
-              <p className="text-gray-500 mb-6">Summary</p>
-              <h1 className="text-2xl font-semibold mb-4">Helena Hills</h1>
-              <Form {...form}>
-                <form
-                  onSubmit={form.handleSubmit(onSubmit)}
-                  className="space-y-8"
-                >
-                  <FormField
+      <SideBar />
+      <div className="flex-grow p-6 md:ml-12">
+        <h1 className="text-2xl font-semibold mb-4">Edit Profile</h1>
+        <p className="text-gray-500 mb-6">Summary</p>
+        <h1 className="text-2xl font-semibold mb-4">Helena Hills</h1>
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+            <FormField
               control={form.control}
               name="username"
               render={({ field }) => (
                 <FormItem>
-          <FormLabel>Username</FormLabel>
+                  <FormLabel>Username</FormLabel>
 
                   <FormControl>
                     <Input placeholder="@username123" {...field} />
@@ -73,12 +70,12 @@ export default function ProfilePage() {
                 </FormItem>
               )}
             />
-                  <FormField
+            <FormField
               control={form.control}
               name="email"
               render={({ field }) => (
                 <FormItem>
-                              <FormLabel>Email</FormLabel>
+                  <FormLabel>Email</FormLabel>
 
                   <FormControl>
                     <Input placeholder="email@domain.com" {...field} />
@@ -92,7 +89,7 @@ export default function ProfilePage() {
               name="changePassword"
               render={({ field }) => (
                 <FormItem>
-                                                  <FormLabel>Change Password</FormLabel>
+                  <FormLabel>Change Password</FormLabel>
 
                   <FormControl>
                     <Input
@@ -110,7 +107,7 @@ export default function ProfilePage() {
               name="confirmPassword"
               render={({ field }) => (
                 <FormItem>
-                                                  <FormLabel>Confirm Password</FormLabel>
+                  <FormLabel>Confirm Password</FormLabel>
 
                   <FormControl>
                     <Input
@@ -123,17 +120,16 @@ export default function ProfilePage() {
                 </FormItem>
               )}
             />
-                  <Button
-                    variant="outline"
-                    type="submit"
-                    className="mb-1 bg-black text-white w-full"
-                  >
-                    Submit
-                  </Button>
-                </form>
-              </Form>
-        </div>
-        </div>
-   
+            <Button
+              variant="outline"
+              type="submit"
+              className="mb-1 bg-black text-white w-full"
+            >
+              Submit
+            </Button>
+          </form>
+        </Form>
+      </div>
+    </div>
   );
 }
