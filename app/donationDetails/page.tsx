@@ -18,7 +18,6 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import {
   Form,
@@ -201,8 +200,10 @@ export default function DonationDetailsPage() {
                               <FormItem>
                                 <FormLabel>Target amount</FormLabel>
                                 <FormControl>
-                                  <Input placeholder="Enter target amount(goal)"
-                                  {...field} />
+                                  <Input
+                                    placeholder="Enter target amount(goal)"
+                                    {...field}
+                                  />
                                 </FormControl>
                                 <FormMessage />
                               </FormItem>
@@ -256,9 +257,11 @@ export default function DonationDetailsPage() {
 
                         <DialogFooter className="sm:justify-start">
                           <DialogClose asChild>
-                            <Button variant="outline"
-                    type="submit"
-                    className="mb-1 bg-black text-white w-full">
+                            <Button
+                              variant="outline"
+                              type="submit"
+                              className="mb-1 bg-black text-white w-full"
+                            >
                               Donate
                             </Button>
                           </DialogClose>
