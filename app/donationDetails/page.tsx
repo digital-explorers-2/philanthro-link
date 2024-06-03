@@ -19,6 +19,17 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
 
 const donateMoney = [
   {
@@ -66,7 +77,24 @@ const relatedDonations = [
   },
 ];
 
+const formSchema = z.object({
+  amount: z.number(),
+  currency: z.enum(["KES", "USD", "EUR"], {
+    required_error: "You need to select a currency.",
+  }),
+
+});
+
+
 export default function DonationDetailsPage() {
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+  });
+
+  function onSubmit(data: z.infer<typeof formSchema>) {
+    console.log(data);
+  }
+
   return (
     <div className="mx-auto md:h-screen min-h-screen px-3 sm:px-5 md:px-20 lg:px-24 xl:px-24 py-8">
       <div>
@@ -161,19 +189,65 @@ export default function DonationDetailsPage() {
                     </DialogDescription>
                   </DialogHeader>
                   <div className="grid gap-4 py-4">
+                  <Form {...form}>
+                    <form  onSubmit={form.handleSubmit(onSubmit)}
+                  className="space-y-8">  
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="amount" className="text-right">
-              Amount
-            </Label>
-            <Input
-              id="amount"
-              className="col-span-3"
-            />
+          <FormField
+                    control={form.control}
+                    name="amount"
+                    render={() => (
+                      <FormItem>
+                        <FormLabel>Target amount</FormLabel>
+                        <FormControl>
+                          <Input
+                            placeholder="Enter target amount(goal)" />
+                        </FormControl>
+                        <FormMessage/>
+                      </FormItem>
+                    )}
+                  />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
+          <FormField
+                    control={form.control}
+                    name="currency"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Currency</FormLabel>
+                        <FormControl>
+                          <RadioGroup
+                            onValueChange={field.onChange}
+                            defaultValue={field.value}
+                            className="flex flex-col space-y-1"
+                          >
+                            <FormItem className="flex items-center space-x-3 space-y-0">
+                              <FormControl>
+                                <RadioGroupItem value="KES" />
+                              </FormControl>
+                              <FormLabel className="font-normal">KES</FormLabel>
+                            </FormItem>
+                            <FormItem className="flex items-center space-x-3 space-y-0">
+                              <FormControl>
+                                <RadioGroupItem value="USD" />
+                              </FormControl>
+                              <FormLabel className="font-normal">USD</FormLabel>
+                            </FormItem>
+                            <FormItem className="flex items-center space-x-3 space-y-0">
+                              <FormControl>
+                                <RadioGroupItem value="EUR" />
+                              </FormControl>
+                              <FormLabel className="font-normal">EUR</FormLabel>
+                            </FormItem>
+                          </RadioGroup>
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
             
           </div>
-        </div>
+       
                   <DialogFooter className="sm:justify-start">
                     <DialogClose asChild>
                       <Button type="button" variant="secondary">
@@ -181,6 +255,9 @@ export default function DonationDetailsPage() {
                       </Button>
                     </DialogClose>
                   </DialogFooter>
+                  </form>
+                  </Form> 
+                  </div>
                 </DialogContent>
               </Dialog>
             </CardFooter>
