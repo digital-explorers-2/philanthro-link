@@ -256,8 +256,10 @@ export default function DonationDetailsPage() {
 
                         <DialogFooter className="sm:justify-start">
                           <DialogClose asChild>
-                            <Button type="button" variant="secondary">
-                              Close
+                            <Button variant="outline"
+                    type="submit"
+                    className="mb-1 bg-black text-white w-full">
+                              Donate
                             </Button>
                           </DialogClose>
                         </DialogFooter>
