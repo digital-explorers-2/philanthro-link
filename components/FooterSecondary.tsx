@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 function FooterSecondary() {
   return (
@@ -53,6 +54,29 @@ function FooterSecondary() {
 </span>
 </div>
           <br />
+        </div>
+        <div className="mb-8 lg:mb-0 w-full lg:w-auto">
+          <h2 className="mb-4">About Us</h2>
+          <nav className="flex flex-col space-y-2">
+            <Link
+              href="/"
+              className="text-muted-foreground transition-colors hover:text-primary text-black"
+            >
+              Home
+            </Link>
+            <Link
+              href="/about"
+              className="text-muted-foreground transition-colors hover:text-primary text-black"
+            >
+              About
+            </Link>
+            <Link
+              href="/contact"
+              className="text-muted-foreground transition-colors hover:text-primary text-black"
+            >
+              Contact
+            </Link>
+          </nav>
         </div>
       </div>
     </footer>
