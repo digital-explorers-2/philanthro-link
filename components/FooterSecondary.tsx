@@ -3,11 +3,11 @@ import Link from "next/link";
 
 function FooterSecondary() {
   return (
-    <footer className=" text-black py-10 text-sm border-t-2">
+    <footer className=" text-black py-10 text-sm border-t-2 mt-20" >
       <div className="container mx-auto px-6  flex flex-col lg:flex-row justify-between items-start lg:items-center">
         <div className="w-full lg:w-auto lg:mr-auto">
-          <h2 className="mb-4">PhilanthroLink</h2>
-          <div> 
+          <h2 className="md:my-4 text-xl font-normal">PhilanthroLink</h2>
+          <div className="flex flex-column md:mt-16"> 
           {/* <!-- Facebook Icon--> */}
           <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M20 10.04C14.5 10.04 10 14.53 10 20.06C10 25.06 13.66 29.21 18.44 29.96V22.96H15.9V20.06H18.44V17.85C18.44 15.34 19.93 13.96 22.22 13.96C23.31 13.96 24.45 14.15 24.45 14.15V16.62H23.19C21.95 16.62 21.56 17.39 21.56 18.18V20.06H24.34L23.89 22.96H21.56V29.96C23.9164 29.5878 26.0622 28.3855 27.6099 26.57C29.1576 24.7546 30.0054 22.4456 30 20.06C30 14.53 25.5 10.04 20 10.04Z" fill="#828282"/>
@@ -31,8 +31,8 @@ function FooterSecondary() {
 </div>
           <br />
         </div>
-        <div className="mb-8 lg:mb-0 w-full lg:w-auto">
-          <h2 className="mb-4">About Us</h2>
+        <div className="mb-8 lg:mb-0 w-full lg:w-auto mr-20">
+          <h2 className="mb-4 font-medium text-base">About Us</h2>
           <nav className="flex flex-col space-y-2">
             <Link
               href="/"
