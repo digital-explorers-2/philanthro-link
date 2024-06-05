@@ -1,5 +1,7 @@
 import React from "react";
-import { Button } from "./ui/button";
+import { Button, buttonVariants } from "./ui/button";
+import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 export default function HeroSection() {
   return (
@@ -19,13 +21,20 @@ export default function HeroSection() {
         className="absolute inset-0 object-cover w-full h-full brightness-50 z-[-1]"
       />
       <div className="flex flex-row mt-4 gap-4">
-        <Button className="rounded-full px-10">Donate now</Button>
-        <Button
-          variant="outline"
-          className="rounded-full px-10 bg-transparent text-white hover:text-black"
+        <Link
+          href="#donations"
+          className={cn(`${buttonVariants()} rounded-full px-10`)}
+        >
+          Donate now
+        </Link>
+        <Link
+          href="/about"
+          className={cn(
+            `${buttonVariants({ variant: "outline" })} rounded-full px-10 bg-transparent text-white hover:text-black`,
+          )}
         >
           About us
-        </Button>
+        </Link>
       </div>
     </div>
   );

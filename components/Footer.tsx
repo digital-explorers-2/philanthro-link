@@ -9,28 +9,22 @@ function Footer() {
           <h2 className="mb-4">ABOUT</h2>
           <nav className="flex flex-col space-y-2">
             <Link
-              href="#"
+              href="/"
               className="text-muted-foreground transition-colors hover:text-primary text-white"
             >
               Home
             </Link>
             <Link
-              href="#"
+              href="/about"
               className="text-muted-foreground transition-colors hover:text-primary text-white"
             >
               About
             </Link>
             <Link
-              href="#"
+              href="/contact"
               className="text-muted-foreground transition-colors hover:text-primary text-white"
             >
               Contact
-            </Link>
-            <Link
-              href="#"
-              className="text-muted-foreground transition-colors hover:text-primary text-white"
-            >
-              Help
             </Link>
           </nav>
         </div>
