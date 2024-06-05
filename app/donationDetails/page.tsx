@@ -30,6 +30,8 @@ import {
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import FooterSecondary from "@/components/FooterSecondary"
+
 
 const donateMoney = [
   {
@@ -307,6 +309,7 @@ export default function DonationDetailsPage() {
           ))}
         </div>
       </div>
+      <FooterSecondary />
     </div>
   );
 }
