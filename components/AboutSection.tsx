@@ -1,9 +1,43 @@
 import React from "react";
 import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/components/ui/collapsible";
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+
+const faqs = [
+  {
+    id: 1,
+    question: "How can I donate through PhilanthroLink?",
+    answer:
+      "To donate through PhilanthroLink, simply browse the list of verified charitable projects on our platform, select a project that resonates with you, and click on the 'Donate Now' button. Follow the prompts to make your contribution securely.",
+  },
+  {
+    id: 2,
+    question: "Are the charitable projects on PhilanthroLink verified?",
+    answer:
+      "Yes, all projects seeking donations on PhilanthroLink undergo thorough verification to ensure legitimacy and transparency. We take great care to ensure that your donations are supporting credible and impactful causes.",
+  },
+  {
+    id: 3,
+    question: "Can I create a fundraising campaign on PhilanthroLink?",
+    answer:
+      "At the moment, PhilanthroLink focuses on featuring verified charitable projects rather than hosting individual fundraising campaigns. However, if you represent a charitable organization, you can contact us to discuss potential collaboration opportunities.",
+  },
+  {
+    id: 4,
+    question: "How can I get in touch with PhilanthroLink?",
+    answer:
+      "If you have any questions, feedback, or concerns, you can contact our support team via email at support@philanthrolink.com. We're here to assist you and ensure that your philanthropic journey with us is a positive one.",
+  },
+  {
+    id: 5,
+    question: "Can I volunteer with PhilanthroLink?",
+    answer:
+      "PhilanthroLink does not currently offer volunteer opportunities directly through our platform. However, many of the charitable projects featured on our platform may be seeking volunteers. You can explore individual project pages for more information.",
+  },
+];
 
 function AboutSection() {
   return (
@@ -33,54 +67,20 @@ function AboutSection() {
               projects while fostering a sense of community and collaboration in
               the realm of philanthropy.
             </p>
-            <a
-              href="#"
-              className="text-black underline block md:text-left pb-6"
-            >
-              Read more
-            </a>
             <h3 className="text-2xl font-bold mt-8 mb-4 text-center md:text-left pb-6">
               Frequently asked questions
             </h3>
 
-            <div className="bg-white shadow-md rounded-lg mb-4 p-4">
-              <Collapsible>
-                <CollapsibleTrigger className="font-semibold text-primary cursor-pointer my-2">
-                  Lorem ipsum sit dolor?
-                </CollapsibleTrigger>
-                <CollapsibleContent>
-                  <span className="text-primary">
-                    Answer to question 1 goes here.
-                  </span>
-                </CollapsibleContent>
-              </Collapsible>
-            </div>
-
-            <div className="bg-white shadow-md rounded-lg mb-4 p-4">
-              <Collapsible>
-                <CollapsibleTrigger className="font-semibold text-primary cursor-pointer my-2">
-                  Lorem ipsum sit dolor?
-                </CollapsibleTrigger>
-                <CollapsibleContent>
-                  <span className="text-primary">
-                    Answer to question 2 goes here.
-                  </span>
-                </CollapsibleContent>
-              </Collapsible>
-            </div>
-
-            <div className="bg-white shadow-md rounded-lg mb-8 p-4">
-              <Collapsible>
-                <CollapsibleTrigger className="font-semibold text-primary cursor-pointer my-2">
-                  Lorem ipsum sit dolor?
-                </CollapsibleTrigger>
-                <CollapsibleContent>
-                  <span className="text-primary">
-                    Answer to question 3 goes here.
-                  </span>
-                </CollapsibleContent>
-              </Collapsible>
-            </div>
+            <Accordion type="single" collapsible className="w-full">
+              {faqs.map((faq) => (
+                <AccordionItem key={faq.id} value={`item-${faq.id}`}>
+                  <AccordionTrigger>{faq.question}</AccordionTrigger>
+                  <AccordionContent className="text-primary">
+                    {faq.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
           </div>
         </div>
 
