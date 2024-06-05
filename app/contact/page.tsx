@@ -47,7 +47,7 @@ export default function Contact() {
     <div className="md:grid grid-cols-2">
       <div className="flex flex-col justify-start items-start p-2 ml-7 max-sm:p-4">
         <h1 className="font-bold text-6xl mb-10">Contact us</h1>
-        <h3 className="font-normal text-2xl mb-10">Feel free to reach out</h3>
+        <h3 className="font-normal text-2xl mb-10 text-slate-400">Feel free to reach out</h3>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
