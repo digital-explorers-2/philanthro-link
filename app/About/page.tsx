@@ -1,6 +1,9 @@
+import FooterSecondary from "@/components/FooterSecondary"
+
 export default function AboutPage() {
   return (
-    <div className="md:grid grid-cols-2 md:mx-20 md:h-screen my-20">
+    <div className="md:mx-20 md:h-screen my-20">
+    <div className="md:grid grid-cols-2 ">
       <div className="flex flex-col justify-start items-start p-8 mr-10">
         <h1 className="font-bold text-6xl mb-10">About</h1>
         <p className="mb-10 font-normal md:text-lg leading-7 justify-par">
@@ -24,6 +27,8 @@ export default function AboutPage() {
       <div className="md:flex md:justify-center items-center max-sm:p-8">
         <img className="size-15" src="/about.jpeg" alt="About us" />
       </div>
+    </div>
+    <FooterSecondary/>  
     </div>
   );
 }
