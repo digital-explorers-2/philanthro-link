@@ -3,7 +3,7 @@ import Link from "next/link";
 
 function FooterSecondary() {
   return (
-    <footer className=" text-black py-10 text-sm">
+    <footer className=" text-black py-10 text-sm border-t-2">
       <div className="container mx-auto px-6  flex flex-col lg:flex-row justify-between items-start lg:items-center">
         <div className="w-full lg:w-auto lg:mr-auto">
           <h2 className="mb-4">PhilanthroLink</h2>
