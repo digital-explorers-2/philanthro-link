@@ -1,16 +1,17 @@
-import { GeistSans } from 'geist/font/sans';
-import './globals.css';
-import ClientRootLayout from '@/components/ClientRootLayout';
+import { GeistSans } from "geist/font/sans";
+import "./globals.css";
+import ClientRootLayout from "@/components/ClientRootLayout";
+import { Toaster } from "@/components/ui/toaster";
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
-  : 'http://localhost:3000';
+  : "http://localhost:3000";
 
 export const metadata = {
   metadataBase: new URL(defaultUrl),
-  title: 'PhilanthroLink',
+  title: "PhilanthroLink",
   description:
-    'The one-stop crowdfunding platform dedicated to connecting donors with causes they care about',
+    "The one-stop crowdfunding platform dedicated to connecting donors with causes they care about",
 };
 
 export default function RootLayout({
@@ -22,6 +23,7 @@ export default function RootLayout({
     <html lang="en" className={GeistSans.className}>
       <body className="bg-background text-foreground">
         <ClientRootLayout>{children}</ClientRootLayout>
+        <Toaster />
       </body>
     </html>
   );

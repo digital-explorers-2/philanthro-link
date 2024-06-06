@@ -1,6 +1,13 @@
 import { createClient } from "@/utils/supabase/server";
 import { NextRequest, NextResponse } from "next/server";
 
+type Input = {
+  donation_id: string;
+  user_id: number;
+  amount: number;
+  currency: string;
+};
+
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
   let page = searchParams.get("page") || 1;
@@ -46,3 +53,47 @@ export async function GET(request: NextRequest) {
 }
 
 // TODO: optimize search using https://supabase.com/docs/guides/database/full-text-search
+
+export async function POST(request: Request) {
+  const { donation_id, user_id, amount, currency }: Input =
+    await request.json();
+
+  const supabase = createClient();
+
+  const { data: user_donation, error: user_donation_error } = await supabase
+    .from("user_donations")
+    .insert([
+      {
+        donation_id,
+        user_id,
+        amount,
+        currency,
+      },
+    ])
+    .select()
+    .single();
+
+  if (user_donation_error) {
+    return new NextResponse(JSON.stringify({ user_donation_error }), {
+      status: 500,
+    });
+  }
+
+  const { data: donation, error: donation_error } = await supabase.rpc(
+    "update_donation_and_return",
+    {
+      donation_id: user_donation.donation_id,
+      amount: amount,
+    },
+  );
+
+  if (donation_error) {
+    return new NextResponse(JSON.stringify({ donation_error }), {
+      status: 500,
+    });
+  }
+
+  return new NextResponse(JSON.stringify(donation), {
+    status: 201,
+  });
+}

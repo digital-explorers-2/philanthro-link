@@ -182,9 +182,14 @@ function DonationSection({ donations, categories }: Props) {
                       >
                         <Bookmark className="w-4 h-4" />
                       </Button>
-                      <Button variant="custom" className="flex-grow rounded-md">
+                      <Link
+                        href={`/donations/${donation.id}`}
+                        className={cn(
+                          `${buttonVariants({ variant: "custom" })} flex-grow rounded-md`,
+                        )}
+                      >
                         Donate now
-                      </Button>
+                      </Link>
                     </div>
                   </div>
                 ))}
