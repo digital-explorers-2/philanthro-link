@@ -22,6 +22,7 @@ type UserDonation = {
   created_at: Date;
   updated_at: Date;
   amount: number;
+  currency: string;
 };
 
 type Reject = {
