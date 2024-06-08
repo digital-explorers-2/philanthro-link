@@ -34,60 +34,51 @@ async function DashboardPage() {
   ];
 
   return (
-    <div className="flex">
-      {/* Sidebar */}
-      <SideBar />
-      {/* Main Content */}
-      <div className="flex-grow p-6 md:ml-12">
-        <div className="flex justify-between items-center mb-6">
-          <TabsLayout currentTab="dashboard">
-            <h1 className="text-2xl font-semibold mb-4">Dashboard</h1>
-            <p className="text-gray-500 mb-6">Summary</p>
+    <TabsLayout currentTab="dashboard">
+      <h1 className="text-2xl font-semibold mb-4">Dashboard</h1>
+      <p className="text-gray-500 mb-6">Summary</p>
 
-            {/* Cards */}
-            <div className="grid gap-3 grid-cols-1 md:grid-cols-3">
-              {stats.map((stat, i) => (
-                <div
-                  key={i}
-                  className="bg-white shadow p-4 rounded-lg border border-gray-200"
-                >
-                  <h2 className="text-sm font-semibold mb-2">{stat.title}</h2>
-                  <p className="text-2xl font-semibold">{stat.value}</p>
-                  <p className="text-gray-500">{stat.description}</p>
-                </div>
-              ))}
-            </div>
-            <p className="text-gray-500 mb-6 mt-6">Good causes</p>
-
-            {/* Causes You Have Funded */}
-            <div className="bg-white shadow p-4 rounded-lg border border-gray-200 w-full">
-              <h2 className="text-sm font-semibold mb-4">
-                Most recent causes you have funded
-              </h2>
-              {userDonations.slice(0, 5).map((donation) => (
-                <div className="flex items-center mb-4 gap-2" key={donation.id}>
-                  <div className="w-14 h-14 rounded-md relative overflow-hidden">
-                    <Image
-                      src={donation.donations.descriptions.image}
-                      alt={donation.donations.title}
-                      fill={true}
-                      className="object-cover"
-                    />
-                  </div>
-
-                  <div>
-                    <p className="font-bold">{donation.donations.title}</p>
-                    <p className="text-gray-500">
-                      Your Contribution: Ksh. {donation.amount}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </TabsLayout>
-        </div>
+      {/* Cards */}
+      <div className="grid gap-3 grid-cols-1 md:grid-cols-3">
+        {stats.map((stat, i) => (
+          <div
+            key={i}
+            className="bg-white shadow p-4 rounded-lg border border-gray-200"
+          >
+            <h2 className="text-sm font-semibold mb-2">{stat.title}</h2>
+            <p className="text-2xl font-semibold">{stat.value}</p>
+            <p className="text-gray-500">{stat.description}</p>
+          </div>
+        ))}
       </div>
-    </div>
+      <p className="text-gray-500 mb-6 mt-6">Good causes</p>
+
+      {/* Causes You Have Funded */}
+      <div className="bg-white shadow p-4 rounded-lg border border-gray-200 w-full">
+        <h2 className="text-sm font-semibold mb-4">
+          Most recent causes you have funded
+        </h2>
+        {userDonations.slice(0, 5).map((donation) => (
+          <div className="flex items-center mb-4 gap-2" key={donation.id}>
+            <div className="w-14 h-14 rounded-md relative overflow-hidden">
+              <Image
+                src={donation.donations.descriptions.image}
+                alt={donation.donations.title}
+                fill={true}
+                className="object-cover"
+              />
+            </div>
+
+            <div>
+              <p className="font-bold">{donation.donations.title}</p>
+              <p className="text-gray-500">
+                Your Contribution: Ksh. {donation.amount}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </TabsLayout>
   );
 }
 
