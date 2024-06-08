@@ -28,14 +28,14 @@ export default function SideBar() {
               Dashboard
             </Link>
             <Link
-              href="/dashboard"
+              href="/dashboard/add-donations"
               className="flex items-center gap-5 text-muted-foreground transition-colors hover:text-primary p-2 text-black"
             >
               <Plus className="w-4 h-4" />
               Add Donations
             </Link>
             <Link
-              href="/dashboard#add-donations"
+              href="/dashboard/donations"
               className="flex items-center gap-5 text-muted-foreground transition-colors hover:text-primary p-2 text-black"
             >
               <List className="w-4 h-4" />
