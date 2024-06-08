@@ -48,13 +48,13 @@ export default function SideBar() {
         <div className="mb-8 text-sm">
           <h2 className="text-m font-semibold mb-4">Account</h2>
           <nav className="flex flex-col space-y-2">
-            <Link
+            {/* <Link
               href="/dashboard/edit-profile"
               className="flex items-center gap-5 text-muted-foreground transition-colors hover:text-primary p-2 text-black"
             >
               <Edit className="w-4 h-4" />
               Edit Profile
-            </Link>
+            </Link> */}
             <Link
               href="/logout"
               className="flex items-center gap-5 text-muted-foreground transition-colors hover:text-primary p-2 text-black"
