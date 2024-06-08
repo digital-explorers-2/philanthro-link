@@ -9,7 +9,7 @@ export default function SideBar() {
       <aside className="hidden md:block w-64 bg-white text-black h-screen p-6 border-r border-gray-200">
         {/* Logo */}
         <Link
-          href="#"
+          href="/"
           className="flex items-center gap-2 text-sm font-semibold md:text-base mb-8"
         >
           <img src="/logo.png" alt="Logo" className="h-7 w-21" />
