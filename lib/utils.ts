@@ -17,3 +17,20 @@ export const formatDate = (date: string | Date) => {
   };
   return date.toLocaleDateString("en-US", options);
 };
+
+export const fileToBase64 = (file: File): Promise<string> => {
+  return new Promise<string>((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      if (typeof reader.result === "string") {
+        resolve(reader.result);
+      } else {
+        reject(new Error("Failed to convert image to base64"));
+      }
+    };
+    reader.onerror = () => {
+      reject(new Error("Error occurred while reading the file"));
+    };
+    reader.readAsDataURL(file);
+  });
+};

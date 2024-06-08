@@ -1,11 +1,18 @@
 import { createClient } from "@/utils/supabase/server";
 import { NextRequest, NextResponse } from "next/server";
+import { decode } from "base64-arraybuffer";
 
 type Input = {
-  donation_id: string;
-  user_id: number;
+  title: string;
+  subtitle: number;
+  category: number;
   amount: number;
   currency: string;
+  user_id: string;
+  challenge?: string;
+  solution?: string;
+  usage?: string;
+  image?: string; // base64 string
 };
 
 export async function GET(request: NextRequest) {
@@ -55,45 +62,78 @@ export async function GET(request: NextRequest) {
 // TODO: optimize search using https://supabase.com/docs/guides/database/full-text-search
 
 export async function POST(request: Request) {
-  const { donation_id, user_id, amount, currency }: Input =
-    await request.json();
+  const {
+    title,
+    subtitle,
+    category,
+    amount,
+    currency,
+    user_id,
+    challenge,
+    solution,
+    usage,
+    image,
+  }: Input = await request.json();
 
   const supabase = createClient();
 
-  const { data: user_donation, error: user_donation_error } = await supabase
-    .from("user_donations")
-    .insert([
-      {
-        donation_id,
-        user_id,
-        amount,
-        currency,
-      },
-    ])
+  // handle image upload
+  let image_url = null;
+  if (image) {
+    const fileName = `${Date.now()}.png`;
+    const { error } = await supabase.storage
+      .from("donation_images")
+      .upload(`public/${fileName}`, decode(image));
+    if (error) {
+      return new NextResponse(JSON.stringify({ error }), {
+        status: 500,
+      });
+    }
+
+    image_url = supabase.storage.from("donation_images").getPublicUrl(fileName)
+      .data.publicUrl;
+  }
+
+  // handle description creation
+  const { data: description, error: description_error } = await supabase
+    .from("descriptions")
+    .insert({
+      subtitle,
+      challenge,
+      solution,
+      usage,
+      image: image_url,
+    })
     .select()
     .single();
 
-  if (user_donation_error) {
-    return new NextResponse(JSON.stringify({ user_donation_error }), {
+  if (description_error) {
+    return new NextResponse(JSON.stringify({ error: description_error }), {
       status: 500,
     });
   }
 
-  const { data: donation, error: donation_error } = await supabase.rpc(
-    "update_donation_and_return",
-    {
-      donation_id: user_donation.donation_id,
-      amount: amount,
-    },
-  );
+  // handle donation creation
+  const { data: donation, error } = await supabase
+    .from("donations")
+    .insert({
+      title,
+      description_id: description.id,
+      category_id: category,
+      amount_needed: amount,
+      amount_currency: currency,
+      user_id,
+    })
+    .select()
+    .single();
 
-  if (donation_error) {
-    return new NextResponse(JSON.stringify({ donation_error }), {
+  if (error) {
+    return new NextResponse(JSON.stringify({ error }), {
       status: 500,
     });
   }
 
   return new NextResponse(JSON.stringify(donation), {
-    status: 201,
+    status: 200,
   });
 }
