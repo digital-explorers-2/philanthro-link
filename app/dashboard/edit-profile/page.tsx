@@ -7,7 +7,6 @@ import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import TabsLayout from "@/components/TabsLayout";
 
-
 import {
   Form,
   FormControl,
@@ -53,7 +52,7 @@ export default function ProfilePage() {
     <div className="flex">
       <SideBar />
       <div className="flex-grow p-6 md:ml-12">
-        <TabsLayout children={undefined} currentTab={""}/>
+        <TabsLayout children={undefined} currentTab={""} />
         <h1 className="text-2xl font-semibold mb-4 mt-5">Edit Profile</h1>
         <p className="text-gray-500 mb-6">Summary</p>
         <h1 className="text-2xl font-semibold mb-4">Helena Hills</h1>
