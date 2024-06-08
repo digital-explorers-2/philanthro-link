@@ -1,5 +1,5 @@
-import React, { ReactNode } from 'react';
-import Link from 'next/link';
+import React, { ReactNode } from "react";
+import Link from "next/link";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
@@ -8,7 +8,10 @@ interface TabsLayoutProps {
   currentTab: string;
 }
 
-export default function TabsLayout({ children, currentTab }: TabsLayoutProps): JSX.Element {
+export default function TabsLayout({
+  children,
+  currentTab,
+}: TabsLayoutProps): JSX.Element {
   return (
     <div className="flex-grow p-6 md:ml-12">
       <div className="flex justify-between items-center mb-6">
@@ -26,13 +29,11 @@ export default function TabsLayout({ children, currentTab }: TabsLayoutProps): J
               </Link>
             </TabsList>
             <Avatar className="ml-4">
-                <AvatarImage src="https://github.com/shadcn.png" />
-                <AvatarFallback>CN</AvatarFallback>
-              </Avatar>
+              <AvatarImage src="https://github.com/shadcn.png" />
+              <AvatarFallback>CN</AvatarFallback>
+            </Avatar>
           </div>
-          <TabsContent value={currentTab}>
-            {children}
-          </TabsContent>
+          <TabsContent value={currentTab}>{children}</TabsContent>
         </Tabs>
       </div>
     </div>
