@@ -13,6 +13,12 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 
+import { createClient } from "@/utils/supabase/client";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+
+const supabase = createClient();
+
 const formSchema = z.object({
   email: z.string().email({ message: "Invalid email address" }),
   password: z.string().min(8, { message: "Must be more than 8 characters" }),
@@ -20,6 +26,9 @@ const formSchema = z.object({
 
 export default function Login() {
   // 1. Define your form.
+  const router = useRouter(); 
+  const [loading, setLoading] = useState(false); 
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -27,12 +36,26 @@ export default function Login() {
       password: "",
     },
   });
+  // Define a submit handler.
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    setLoading(true);
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: values.email,
+        password: values.password,
+      });
 
-  // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+      if (error) {
+        throw new Error("Error signing in: " + error.message);
+      } else {
+        console.log("User signed in:", data.user);
+        router.replace("/dashboard"); // Assuming '/dashboard' is a valid route
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
