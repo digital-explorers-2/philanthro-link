@@ -49,7 +49,7 @@ export async function POST(request: Request, { params }: { params: Params }) {
     const { data, error } = await supabase
       .from("user_donations")
       .update({ amount: existing_user_donation.amount + amount })
-      .eq("id", 1)
+      .eq("id", existing_user_donation.id)
       .select()
       .single();
 
