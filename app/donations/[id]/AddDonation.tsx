@@ -60,17 +60,19 @@ const AddDonation = ({ donation_id }: { donation_id: number }) => {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsLoading(true);
     try {
-      const res = await fetch("/api/donations", {
-        method: "POST",
-        body: JSON.stringify({
-          ...values,
-          donation_id,
-          user_id: "bc4e02e4-c916-44f8-b418-76c7290ec0e7", // TODO: REPLACE WITH USER ID
-        }),
-        headers: {
-          "Content-Type": "application/json",
+      const res = await fetch(
+        `/api/users/${"bc4e02e4-c916-44f8-b418-76c7290ec0e7"}/donations`,
+        {
+          method: "POST",
+          body: JSON.stringify({
+            ...values,
+            donation_id,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
         },
-      });
+      );
 
       if (!res.ok) {
         const { error } = await res.json();

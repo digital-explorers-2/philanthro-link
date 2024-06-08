@@ -18,9 +18,19 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { fileToBase64 } from "@/lib/utils";
+
+const MAX_FILE_SIZE = 5000000;
+
+const ACCEPTED_IMAGE_MIME_TYPES = [
+  "image/jpeg",
+  "image/jpg",
+  "image/png",
+  "image/webp",
+];
 
 const formSchema = z.object({
-  main_title: z.string(),
+  title: z.string(),
   subtitle: z.string(),
   category: z.string(),
   challenge: z.string(),
@@ -32,17 +42,13 @@ const formSchema = z.object({
   }),
   image: z
     .any()
-    .refine((file) => file instanceof File, {
-      message: "Image is required",
-    })
-    .refine((file) => file.size <= 5 * 1024 * 1024, {
-      message: "Max file size is 5MB",
-    })
+    .refine((files: FileList) => files?.length > 0, "Please select an image.")
+    .refine((files: FileList) => {
+      return files?.[0]?.size <= MAX_FILE_SIZE;
+    }, `Max image size is 5MB.`)
     .refine(
-      (file) => ["image/jpeg", "image/png", "image/gif"].includes(file.type),
-      {
-        message: "Only .jpg, .png, .gif formats are supported",
-      },
+      (files: FileList) => ACCEPTED_IMAGE_MIME_TYPES.includes(files?.[0]?.type),
+      "Only .jpg, .jpeg, .png and .webp formats are supported.",
     ),
 });
 
@@ -50,28 +56,37 @@ export default function AddDonation() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      main_title: "",
+      title: "",
       subtitle: "",
       category: "",
       challenge: "",
       solution: "",
       usage: "",
       amount: 0,
+      currency: "KES",
+      image: undefined,
     },
   });
 
   // 2. Define a submit handler.
-  function onSubmit(data: z.infer<typeof formSchema>) {
-    toast({
-      title: "You submitted the following values:",
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-    });
-    console.log(data);
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    if (values.image) {
+      const imageAsBase64 = await fileToBase64(values.image[0]);
+      toast({
+        title: "You submitted the following values:",
+        description: (
+          <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+            <code className="text-white">
+              {JSON.stringify({ values, imageAsBase64 }, null, 2)}
+            </code>
+          </pre>
+        ),
+      });
+    }
+
+    console.log(values);
   }
+
   return (
     <div className="flex">
       {/* Sidebar */}
@@ -90,7 +105,7 @@ export default function AddDonation() {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <FormField
                     control={form.control}
-                    name="main_title"
+                    name="title"
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>Main Title</FormLabel>
@@ -135,7 +150,15 @@ export default function AddDonation() {
                       <FormItem>
                         <FormLabel>Add an image</FormLabel>
                         <FormControl>
-                          <Input type="file" {...field} />
+                          <Input
+                            type="file"
+                            onBlur={field.onBlur}
+                            name={field.name}
+                            onChange={(e) => {
+                              field.onChange(e.target.files);
+                            }}
+                            ref={field.ref}
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
