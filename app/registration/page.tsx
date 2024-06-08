@@ -12,6 +12,10 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { createClient } from '@/utils/supabase/client';
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+const supabase = createClient();
 
 const formSchema = z
   .object({
@@ -26,7 +30,11 @@ const formSchema = z
     message: "Passwords don't match",
     path: ["confirm"],
   });
+  
 export default function Registration() {
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+
   // 1. Define the form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -37,11 +45,29 @@ export default function Registration() {
     },
   });
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    console.log(values);
-  }
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    setLoading(true);
+    try {
+      const response = await supabase.auth.signUp({
+        email: values.email,
+        password: values.password,
+      });
+    
+      if (response.error) {
+        throw new Error('Error signing up: ' + response.error.message);
+      } else {
+        console.log('User signed up:', response.data.user);
+      }
+      router.replace("/login");
+    } catch (error) {
+      console.error(error);
+    } finally {
+    setLoading(false);
+    }
 
+  }
+  
+  // 3. Render the form.
   return (
     <div className="flex justify-center items-center min-h-screen">
       <div className="p-6 w-full max-w-md">
