@@ -1,10 +1,38 @@
-"use client";
 import React from "react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import SideBar from "@/components/SideBar";
 import TabsLayout from "@/components/TabsLayout";
+import { getDonationsByUser } from "./actions";
+import Image from "next/image";
 
-function DashboardPage() {
+async function DashboardPage() {
+  const userDonations = await getDonationsByUser();
+
+  const totalAmount = userDonations.reduce(
+    (acc, donation) => acc + donation.amount,
+    0,
+  );
+
+  // impact calculated as a product of the total amount number of donations and a factor of 1.5
+  const impact = Math.floor(totalAmount * userDonations.length * 0.015);
+
+  const stats = [
+    {
+      title: "Amount Donated",
+      value: "KES " + totalAmount,
+      description: "Total amount donated",
+    },
+    {
+      title: "Count",
+      value: userDonations.length,
+      description: "Total number of donations",
+    },
+    {
+      title: "People helped",
+      value: impact,
+      description: "Approximate number of lives impacted",
+    },
+  ];
+
   return (
     <div className="flex">
       {/* Sidebar */}
@@ -17,84 +45,44 @@ function DashboardPage() {
             <p className="text-gray-500 mb-6">Summary</p>
 
             {/* Cards */}
-            <div className="flex space-x-6">
-              <div className="bg-white shadow p-4 rounded-lg w-1/3 border border-gray-200">
-                <h2 className="text-sm font-semibold">Title 1</h2>
-                <p className="text-xl font-bold mt-2">Value 1</p>
-                <p className="text-gray-500 text-sm mt-1">
-                  This is an explanation of the first value.
-                </p>
-              </div>
-              <div className="bg-white shadow p-4 rounded-lg w-1/3 border border-gray-200">
-                <h2 className="text-sm font-semibold">Title 2</h2>
-                <p className="text-xl font-bold mt-2">Value 2</p>
-                <p className="text-gray-500 text-sm mt-1">
-                  This is an explanation of the second value.
-                </p>
-              </div>
-              <div className="bg-white shadow p-4 rounded-lg w-1/3 border border-gray-200">
-                <h2 className="text-sm font-semibold">Title 3</h2>
-                <p className="text-xl font-bold mt-2">Value 3</p>
-                <p className="text-gray-500 text-sm mt-1">
-                  This is an explanation of the third value.
-                </p>
-              </div>
+            <div className="grid gap-3 grid-cols-1 md:grid-cols-3">
+              {stats.map((stat, i) => (
+                <div
+                  key={i}
+                  className="bg-white shadow p-4 rounded-lg border border-gray-200"
+                >
+                  <h2 className="text-sm font-semibold mb-2">{stat.title}</h2>
+                  <p className="text-2xl font-semibold">{stat.value}</p>
+                  <p className="text-gray-500">{stat.description}</p>
+                </div>
+              ))}
             </div>
             <p className="text-gray-500 mb-6 mt-6">Good causes</p>
 
             {/* Causes You Have Funded */}
             <div className="bg-white shadow p-4 rounded-lg border border-gray-200 w-full">
               <h2 className="text-sm font-semibold mb-4">
-                Causes you have funded
+                Most recent causes you have funded
               </h2>
-              <div className="flex items-center mb-4">
-                <Avatar className="w-14 h-14 mr-4">
-                  <AvatarImage
-                    src="https://via.placeholder.com/150"
-                    alt="Floods in Kenya"
-                    className="w-full h-full object-cover"
-                  />
-                  <AvatarFallback>F</AvatarFallback>
-                </Avatar>
-                <div>
-                  <p className="font-bold">Floods in Kenya</p>
-                  <p className="text-gray-500">
-                    Your Contribution: Ksh. 30,000
-                  </p>
+              {userDonations.slice(0, 5).map((donation) => (
+                <div className="flex items-center mb-4 gap-2" key={donation.id}>
+                  <div className="w-14 h-14 rounded-md relative overflow-hidden">
+                    <Image
+                      src={donation.donations.descriptions.image}
+                      alt={donation.donations.title}
+                      fill={true}
+                      className="object-cover"
+                    />
+                  </div>
+
+                  <div>
+                    <p className="font-bold">{donation.donations.title}</p>
+                    <p className="text-gray-500">
+                      Your Contribution: Ksh. {donation.amount}
+                    </p>
+                  </div>
                 </div>
-              </div>
-              <div className="flex items-center mb-4">
-                <Avatar className="w-14 h-14 mr-4">
-                  <AvatarImage
-                    src="https://via.placeholder.com/150"
-                    alt="Floods in Kenya"
-                    className="w-full h-full object-cover"
-                  />
-                  <AvatarFallback>F</AvatarFallback>
-                </Avatar>
-                <div>
-                  <p className="font-bold">Floods in Kenya</p>
-                  <p className="text-gray-500">
-                    Your Contribution: Ksh. 30,000
-                  </p>
-                </div>
-              </div>
-              <div className="flex items-center mb-4">
-                <Avatar className="w-14 h-14 mr-4">
-                  <AvatarImage
-                    src="https://via.placeholder.com/150"
-                    alt="Floods in Kenya"
-                    className="w-full h-full object-cover"
-                  />
-                  <AvatarFallback>F</AvatarFallback>
-                </Avatar>
-                <div>
-                  <p className="font-bold">Floods in Kenya</p>
-                  <p className="text-gray-500">
-                    Your Contribution: Ksh. 30,000
-                  </p>
-                </div>
-              </div>
+              ))}
             </div>
           </TabsLayout>
         </div>
