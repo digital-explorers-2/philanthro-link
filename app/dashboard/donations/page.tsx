@@ -1,9 +1,11 @@
 import React from "react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import SideBar from "@/components/SideBar";
 import TabsLayout from "@/components/TabsLayout";
+import { getDonationsByUser } from "../actions";
 
-export default function Donations() {
+export default async function Donations() {
+  const userDonations = await getDonationsByUser();
+
   return (
     <div className="flex">
       {/* Sidebar */}
@@ -20,21 +22,22 @@ export default function Donations() {
 
             {/* Donation Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {Array(6)
-                .fill(0)
-                .map((_, index) => (
+              {userDonations &&
+                userDonations.map((item) => (
                   <div
-                    key={index}
+                    key={item.id}
                     className="bg-white shadow p-4 rounded-lg border border-gray-200"
                   >
                     <img
-                      src="https://via.placeholder.com/150"
-                      alt="Donation Image"
+                      src={item.donations.descriptions.image}
+                      alt={item.donations.title}
                       className="w-full h-32 object-cover mb-4 rounded-md"
                     />
-                    <h2 className="text-sm font-semibold">Cause {index + 1}</h2>
+                    <h2 className="text-sm font-semibold">
+                      {item.donations.title}
+                    </h2>
                     <p className="text-gray-500">
-                      Amount donated: Ksh. {Math.floor(Math.random() * 100000)}
+                      Amount donated: {item.currency + " " + item.amount}
                     </p>
                   </div>
                 ))}

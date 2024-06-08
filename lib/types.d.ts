@@ -23,6 +23,15 @@ type UserDonation = {
   updated_at: Date;
   amount: number;
   currency: string;
+  donations: {
+    title: string;
+    descriptions: {
+      image: string;
+    };
+    categories: {
+      name: string;
+    };
+  };
 };
 
 type Reject = {
