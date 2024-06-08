@@ -3,7 +3,6 @@ import React from "react";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import SideBar from "@/components/SideBar";
@@ -19,6 +18,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { fileToBase64 } from "@/lib/utils";
+import LoadingButton from "@/components/LoadingButton";
 
 const MAX_FILE_SIZE = 5000000;
 
@@ -30,26 +30,28 @@ const ACCEPTED_IMAGE_MIME_TYPES = [
 ];
 
 const formSchema = z.object({
-  title: z.string(),
-  subtitle: z.string(),
+  title: z.string().min(3, { message: "Title must be at least 3 characters." }),
+  subtitle: z
+    .string()
+    .min(3, { message: "Subtitle must be at least 3 characters." }),
   category: z.string(),
-  challenge: z.string(),
-  solution: z.string(),
-  usage: z.string(),
-  amount: z.number(),
+  challenge: z.string().optional(),
+  solution: z.string().optional(),
+  usage: z.string().optional(),
+  amount: z.string().min(1, { message: "Amount must be provided" }),
   currency: z.enum(["KES", "USD", "EUR"], {
     required_error: "You need to select a currency.",
   }),
   image: z
     .any()
-    .refine((files: FileList) => files?.length > 0, "Please select an image.")
     .refine((files: FileList) => {
       return files?.[0]?.size <= MAX_FILE_SIZE;
     }, `Max image size is 5MB.`)
     .refine(
       (files: FileList) => ACCEPTED_IMAGE_MIME_TYPES.includes(files?.[0]?.type),
       "Only .jpg, .jpeg, .png and .webp formats are supported.",
-    ),
+    )
+    .optional(),
 });
 
 export default function AddDonation() {
@@ -62,7 +64,7 @@ export default function AddDonation() {
       challenge: "",
       solution: "",
       usage: "",
-      amount: 0,
+      amount: "",
       currency: "KES",
       image: undefined,
     },
@@ -70,21 +72,42 @@ export default function AddDonation() {
 
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof formSchema>) {
+    let imageAsBase64 = null;
     if (values.image) {
-      const imageAsBase64 = await fileToBase64(values.image[0]);
-      toast({
-        title: "You submitted the following values:",
-        description: (
-          <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-            <code className="text-white">
-              {JSON.stringify({ values, imageAsBase64 }, null, 2)}
-            </code>
-          </pre>
-        ),
-      });
+      imageAsBase64 = await fileToBase64(values.image[0]);
     }
 
-    console.log(values);
+    try {
+      const res = await fetch("/api/donations", {
+        method: "POST",
+        body: JSON.stringify({
+          ...values,
+          image: imageAsBase64,
+          user_id: "bc4e02e4-c916-44f8-b418-76c7290ec0e7", // TODO: Replace with the actual user ID
+        }),
+      });
+
+      if (!res.ok) {
+        const { error } = await res.json();
+        throw error;
+      }
+
+      toast({
+        title: "Donation created successfully!",
+        description: "Now it's up to the community to help out. All the best!",
+      });
+
+      form.reset();
+      const data = await res.json();
+      console.log(data);
+    } catch (error: any) {
+      console.error(error);
+      toast({
+        variant: "destructive",
+        title: "Something went wrong!",
+        description: error.message ?? error.toString(),
+      });
+    }
   }
 
   return (
@@ -222,6 +245,7 @@ export default function AddDonation() {
                       <FormControl>
                         <Input
                           placeholder="Enter target amount(goal)"
+                          type="number"
                           {...field}
                         />
                       </FormControl>
@@ -265,13 +289,14 @@ export default function AddDonation() {
                     </FormItem>
                   )}
                 />
-                <Button
+                <LoadingButton
                   variant="outline"
                   type="submit"
                   className="mb-1 bg-black text-white w-full"
+                  isLoading={form.formState.isSubmitting}
                 >
                   Submit
-                </Button>
+                </LoadingButton>
               </form>
             </Form>
           </TabsLayout>

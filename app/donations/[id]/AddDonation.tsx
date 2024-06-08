@@ -28,7 +28,7 @@ const currencies = Object.keys(currencyMinAmounts) as [string, ...string[]];
 
 const formSchema = z
   .object({
-    amount: z.number().min(0, { message: "Amount must be a positive number" }),
+    amount: z.string().min(1, { message: "Amount must be provided" }),
     currency: z.enum(currencies, {
       required_error: "You need to select a currency.",
     }),
@@ -36,7 +36,7 @@ const formSchema = z
   .refine(
     (data) => {
       const minAmount = currencyMinAmounts[data.currency];
-      return data.amount >= minAmount;
+      return parseInt(data.amount) >= minAmount;
     },
     {
       message:
@@ -51,7 +51,7 @@ const AddDonation = ({ donation_id }: { donation_id: number }) => {
 
   const form = useForm<z.infer<typeof formSchema>>({
     defaultValues: {
-      amount: 0,
+      amount: "",
       currency: "KES",
     },
     resolver: zodResolver(formSchema),
@@ -61,7 +61,7 @@ const AddDonation = ({ donation_id }: { donation_id: number }) => {
     setIsLoading(true);
     try {
       const res = await fetch(
-        `/api/users/${"bc4e02e4-c916-44f8-b418-76c7290ec0e7"}/donations`,
+        `/api/users/${"bc4e02e4-c916-44f8-b418-76c7290ec0e7"}/donations`, // TODO: Replace with the actual user ID
         {
           method: "POST",
           body: JSON.stringify({
@@ -110,9 +110,6 @@ const AddDonation = ({ donation_id }: { donation_id: number }) => {
                       type="number"
                       placeholder="Enter amount"
                       {...field}
-                      onChange={(e) => {
-                        field.onChange(e.target.valueAsNumber || 0);
-                      }}
                     />
                   </FormControl>
                   <FormMessage />

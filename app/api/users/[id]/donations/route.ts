@@ -58,7 +58,22 @@ export async function POST(request: Request, { params }: { params: Params }) {
         status: 500,
       });
     }
-    return new NextResponse(JSON.stringify(data), {
+
+    const { data: donation, error: donation_error } = await supabase.rpc(
+      "update_donation_and_return",
+      {
+        donation_id: existing_user_donation.id,
+        amount: amount,
+      },
+    );
+
+    if (donation_error) {
+      return new NextResponse(JSON.stringify({ donation_error }), {
+        status: 500,
+      });
+    }
+
+    return new NextResponse(JSON.stringify(donation), {
       status: 200,
     });
   }

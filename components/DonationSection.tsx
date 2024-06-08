@@ -133,7 +133,7 @@ function DonationSection({ donations, categories }: Props) {
                   >
                     <img
                       src={donation.descriptions.image ?? "/no-img.jpg"}
-                      alt="Floods"
+                      alt={donation.title}
                       className="w-full h-[210px] object-cover rounded-t-lg"
                     />
                     <div className="p-4 flex flex-col flex-grow">

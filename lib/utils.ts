@@ -34,3 +34,22 @@ export const fileToBase64 = (file: File): Promise<string> => {
     reader.readAsDataURL(file);
   });
 };
+
+export const base64ToFile = (base64: string, fileName: string): File => {
+  const arr = base64.split(",");
+  const mime = arr[0].match(/:(.*?);/)?.[1];
+  if (!mime) {
+    throw new Error("Invalid Base64 string");
+  }
+
+  const byteString = atob(arr[1]);
+  const ab = new ArrayBuffer(byteString.length);
+  const ia = new Uint8Array(ab);
+
+  for (let i = 0; i < byteString.length; i++) {
+    ia[i] = byteString.charCodeAt(i);
+  }
+
+  const blob = new Blob([ab], { type: mime });
+  return new File([blob], fileName, { type: mime });
+};

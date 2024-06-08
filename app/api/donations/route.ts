@@ -1,11 +1,11 @@
+import { base64ToFile } from "@/lib/utils";
 import { createClient } from "@/utils/supabase/server";
 import { NextRequest, NextResponse } from "next/server";
-import { decode } from "base64-arraybuffer";
 
 type Input = {
   title: string;
   subtitle: number;
-  category: number;
+  category: string;
   amount: number;
   currency: string;
   user_id: string;
@@ -79,19 +79,55 @@ export async function POST(request: Request) {
 
   // handle image upload
   let image_url = null;
+
   if (image) {
-    const fileName = `${Date.now()}.png`;
+    const fileExtension = image.split(";")[0].split("/")[1];
+    const fileName = Date.now() + "." + fileExtension;
+    const file = base64ToFile(image, fileName);
+
     const { error } = await supabase.storage
       .from("donation_images")
-      .upload(`public/${fileName}`, decode(image));
+      .upload(`public/${fileName}`, file);
     if (error) {
       return new NextResponse(JSON.stringify({ error }), {
         status: 500,
       });
     }
 
-    image_url = supabase.storage.from("donation_images").getPublicUrl(fileName)
-      .data.publicUrl;
+    image_url = supabase.storage
+      .from("donation_images")
+      .getPublicUrl(`public/${fileName}`).data.publicUrl;
+  }
+
+  // handle category search
+  let category_id = null;
+  const { data: category_data } = await supabase
+    .from("categories")
+    .select()
+    .ilike("name", `%${category}%`)
+    .single();
+
+  if (!category_data) {
+    // to lower case and capitalize the first letter
+    const categoryString = category
+      .toLowerCase()
+      .replace(/\b\w/g, (l) => l.toUpperCase());
+
+    const { data: new_category, error: new_category_error } = await supabase
+      .from("categories")
+      .insert({ name: categoryString })
+      .select()
+      .single();
+
+    if (new_category_error) {
+      return new NextResponse(JSON.stringify({ error: new_category_error }), {
+        status: 500,
+      });
+    }
+
+    category_id = new_category.id;
+  } else {
+    category_id = category_data.id;
   }
 
   // handle description creation
@@ -119,7 +155,7 @@ export async function POST(request: Request) {
     .insert({
       title,
       description_id: description.id,
-      category_id: category,
+      category_id,
       amount_needed: amount,
       amount_currency: currency,
       user_id,
