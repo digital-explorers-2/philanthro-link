@@ -8,6 +8,7 @@ type Donation = {
   amount_needed: number;
   amount_currency: string;
   user_id: string;
+  user_full_name?: string;
   category_id: number;
   verification_status: Status;
   created_at: Date;

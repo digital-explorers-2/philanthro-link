@@ -15,6 +15,7 @@ import { useForm } from "react-hook-form";
 import LoadingButton from "@/components/LoadingButton";
 import { useState } from "react";
 import { useToast } from "@/components/ui/use-toast";
+import { useAuth } from "@/components/providers/AuthProvider";
 
 const currencyMinAmounts: { [key: string]: number } = {
   USD: 1,
@@ -48,6 +49,7 @@ const formSchema = z
 const AddDonation = ({ donation_id }: { donation_id: number }) => {
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
+  const { user } = useAuth();
 
   const form = useForm<z.infer<typeof formSchema>>({
     defaultValues: {
@@ -60,19 +62,21 @@ const AddDonation = ({ donation_id }: { donation_id: number }) => {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsLoading(true);
     try {
-      const res = await fetch(
-        `/api/users/${"bc4e02e4-c916-44f8-b418-76c7290ec0e7"}/donations`, // TODO: Replace with the actual user ID
-        {
-          method: "POST",
-          body: JSON.stringify({
-            ...values,
-            donation_id,
-          }),
-          headers: {
-            "Content-Type": "application/json",
-          },
+      if (!user) {
+        throw new Error("You need to be logged in to make a donation");
+      }
+
+      const res = await fetch(`/api/users/${user.id}/donations`, {
+        method: "POST",
+        body: JSON.stringify({
+          donation_id,
+          amount: parseFloat(values.amount),
+          currency: values.currency,
+        }),
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+      });
 
       if (!res.ok) {
         const { error } = await res.json();
@@ -88,7 +92,7 @@ const AddDonation = ({ donation_id }: { donation_id: number }) => {
       toast({
         variant: "destructive",
         title: "Something went wrong!",
-        description: error.message ?? error.toString(),
+        description: error?.message ?? error.toString(),
       });
     } finally {
       setIsLoading(false);

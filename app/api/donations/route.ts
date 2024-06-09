@@ -9,6 +9,7 @@ type Input = {
   amount: number;
   currency: string;
   user_id: string;
+  user_full_name: string;
   challenge?: string;
   solution?: string;
   usage?: string;
@@ -69,6 +70,7 @@ export async function POST(request: Request) {
     amount,
     currency,
     user_id,
+    user_full_name,
     challenge,
     solution,
     usage,
@@ -159,6 +161,7 @@ export async function POST(request: Request) {
       amount_needed: amount,
       amount_currency: currency,
       user_id,
+      user_full_name,
     })
     .select()
     .single();

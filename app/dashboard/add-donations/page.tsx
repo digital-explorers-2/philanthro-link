@@ -86,6 +86,7 @@ export default function AddDonation() {
           ...values,
           image: imageAsBase64,
           user_id: user!.id,
+          user_full_name: user!.user_metadata.full_name,
         }),
       });
 

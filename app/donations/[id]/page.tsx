@@ -68,15 +68,20 @@ const relatedDonations = [
 ];
 
 const fetchDonationById = async (id: string) => {
-  const res = await fetch(`${process.env.BASE_URL}/api/donations/${id}`, {
-    next: { revalidate: 0 },
-  });
+  try {
+    const res = await fetch(`${process.env.BASE_URL}/api/donations/${id}`, {
+      next: { revalidate: 0 },
+    });
 
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
+    if (!res.ok) {
+      const { error } = await res.json();
+      throw error;
+    }
+
+    return res.json();
+  } catch (error: any) {
+    return <p>{error}</p>;
   }
-
-  return res.json();
 };
 
 export default async function DonationDetailsPage({
@@ -105,8 +110,7 @@ export default async function DonationDetailsPage({
               {donation.descriptions.subtitle}
             </h2>
             <h4 className="text-sm mb-4">
-              Added by:{" "}
-              {donation.users.first_name + " " + donation.users.last_name}
+              Added by: {donation.user_full_name ?? "Anonymous"}
             </h4>
           </div>
           <div>
