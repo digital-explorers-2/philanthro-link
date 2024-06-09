@@ -5,7 +5,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { toast } from "@/components/ui/use-toast";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import SideBar from "@/components/SideBar";
 import TabsLayout from "@/components/TabsLayout";
 
 import {
@@ -19,6 +18,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { fileToBase64 } from "@/lib/utils";
 import LoadingButton from "@/components/LoadingButton";
+import { useAuth } from "@/components/providers/AuthProvider";
 
 const MAX_FILE_SIZE = 5000000;
 
@@ -72,6 +72,10 @@ export default function AddDonation() {
 
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof formSchema>) {
+    const {
+      user: { id: user_id },
+    } = useAuth();
+
     let imageAsBase64 = null;
     if (values.image) {
       imageAsBase64 = await fileToBase64(values.image[0]);
@@ -83,7 +87,7 @@ export default function AddDonation() {
         body: JSON.stringify({
           ...values,
           image: imageAsBase64,
-          user_id: "bc4e02e4-c916-44f8-b418-76c7290ec0e7", // TODO: Replace with the actual user ID
+          user_id,
         }),
       });
 

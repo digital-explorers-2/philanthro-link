@@ -12,13 +12,22 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { createClient } from '@/utils/supabase/client';
+import { createClient } from "@/utils/supabase/client";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import LoadingButton from "@/components/LoadingButton";
+import Link from "next/link";
+import { useToast } from "@/components/ui/use-toast";
+
 const supabase = createClient();
 
 const formSchema = z
   .object({
+    firstName: z
+      .string()
+      .min(3, { message: "First name must be at least 3 characters." }),
+    lastName: z
+      .string()
+      .min(3, { message: "Last name must be at least 3 characters." }),
     email: z.string().email({ message: "Invalid email address" }),
     password: z.string().min(8, { message: "Must be more than 8 characters" }),
     confirmPassword: z
@@ -28,17 +37,19 @@ const formSchema = z
 
   .refine((data) => data.password === data.confirmPassword, {
     message: "Passwords don't match",
-    path: ["confirm"],
+    path: ["confirmPassword"],
   });
-  
+
 export default function Registration() {
   const router = useRouter();
-  const [loading, setLoading] = useState(false);
+  const { toast } = useToast();
 
   // 1. Define the form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
+      firstName: "",
+      lastName: "",
       email: "",
       password: "",
       confirmPassword: "",
@@ -46,27 +57,50 @@ export default function Registration() {
   });
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    setLoading(true);
     try {
-      const response = await supabase.auth.signUp({
+      const { data, error } = await supabase.auth.signUp({
         email: values.email,
         password: values.password,
       });
-    
-      if (response.error) {
-        throw new Error('Error signing up: ' + response.error.message);
-      } else {
-        console.log('User signed up:', response.data.user);
-      }
-      router.replace("/login");
-    } catch (error) {
-      console.error(error);
-    } finally {
-    setLoading(false);
-    }
 
+      if (error) {
+        throw new Error("Error signing up: " + error.message);
+      } else {
+        console.log("User signed up:", data.user);
+        toast({
+          title: "Account created successfully!",
+          description: "You can now log in to your account.",
+        });
+      }
+
+      const res = await fetch("/api/users", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          first_name: values.firstName,
+          last_name: values.lastName,
+          email_address: values.email,
+        }),
+      });
+
+      if (!res.ok) {
+        const { error } = await res.json();
+        throw error;
+      }
+
+      router.replace("/login");
+    } catch (error: any) {
+      console.error(error);
+      toast({
+        variant: "destructive",
+        title: "Something went wrong!",
+        description: error.message ?? error.toString(),
+      });
+    }
   }
-  
+
   // 3. Render the form.
   return (
     <div className="flex justify-center items-center min-h-screen">
@@ -78,19 +112,49 @@ export default function Registration() {
           Enter your email to sign up for this app.
           <br />
           If you have an existing account,{" "}
-          <a href="#" className="font-bold">
+          <Link href="/login" className="font-bold">
             sign in
-          </a>
+          </Link>
         </p>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
+            <div className="flex space-x-2">
+              <FormField
+                control={form.control}
+                name="firstName"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <Input placeholder="First Name" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="lastName"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <Input placeholder="Last Name" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
             <FormField
               control={form.control}
               name="email"
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Input placeholder="Enter email address" {...field} />
+                    <Input
+                      type="email"
+                      placeholder="Enter email address"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -129,13 +193,14 @@ export default function Registration() {
               )}
             />
             <div className="flex justify-center">
-              <Button
+              <LoadingButton
                 variant="outline"
                 type="submit"
                 className="mb-1 bg-black text-white w-full"
+                isLoading={form.formState.isSubmitting}
               >
                 Sign up with email
-              </Button>
+              </LoadingButton>
             </div>
             <div className="flex items-center mb-4">
               <div className="flex-grow h-px bg-gray-300" />
