@@ -6,7 +6,7 @@ type Params = {
 };
 
 type Input = {
-  donation_id: string;
+  donation_id: number;
   amount: number;
   currency: string;
 };
@@ -46,7 +46,7 @@ export async function POST(request: Request, { params }: { params: Params }) {
       .single();
 
   if (!existing_user_donation_error && existing_user_donation) {
-    const { data, error } = await supabase
+    const { error } = await supabase
       .from("user_donations")
       .update({ amount: existing_user_donation.amount + amount })
       .eq("id", existing_user_donation.id)

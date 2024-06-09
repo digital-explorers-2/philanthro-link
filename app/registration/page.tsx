@@ -77,23 +77,6 @@ export default function Registration() {
         });
       }
 
-      const res = await fetch("/api/users", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          first_name: values.firstName,
-          last_name: values.lastName,
-          email_address: values.email,
-        }),
-      });
-
-      if (!res.ok) {
-        const { error } = await res.json();
-        throw error;
-      }
-
       router.replace("/login");
     } catch (error: any) {
       console.error(error);

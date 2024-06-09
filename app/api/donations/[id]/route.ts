@@ -8,9 +8,9 @@ type Params = {
 export async function GET(request: Request, { params }: { params: Params }) {
   const supabase = createClient();
 
-  const { data: donations, error } = await supabase
+  const { data: donation, error } = await supabase
     .from("donations")
-    .select(`*, descriptions(*), users(first_name, last_name)`)
+    .select(`*, descriptions(*)`)
     .eq("id", params.id)
     .single();
 
@@ -20,7 +20,7 @@ export async function GET(request: Request, { params }: { params: Params }) {
     });
   }
 
-  return new NextResponse(JSON.stringify(donations), {
+  return new NextResponse(JSON.stringify(donation), {
     status: 200,
   });
 }
