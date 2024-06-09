@@ -3,7 +3,6 @@
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -19,6 +18,8 @@ import Link from "next/link";
 import LoadingButton from "@/components/LoadingButton";
 import { useAuth } from "@/components/providers/AuthProvider";
 import { useToast } from "@/components/ui/use-toast";
+import { useState } from "react";
+import { AuthError, User } from "@supabase/supabase-js";
 
 const supabase = createClient();
 
@@ -32,6 +33,8 @@ export default function Login() {
   const { setUser } = useAuth();
   const { toast } = useToast();
 
+  const [isGoogleSignInLoading, setIsGoogleSignInLoading] = useState(false);
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -40,40 +43,46 @@ export default function Login() {
     },
   });
 
-  async function handleSignIn(response: any) {
-    const { user, error } = response;
-    
+  const handleSignIn = (
+    error: AuthError | null,
+    user: User | "google" | null,
+  ) => {
     if (error) {
-        console.error('Login error:', error.message);
-        toast({
-            variant: "destructive",
-            title: "Login Failed",
-            description: error.message
-        });
+      console.error("Login error:", error.message);
+      toast({
+        variant: "destructive",
+        title: "Login Failed",
+        description: error.message,
+      });
     } else if (user) {
-        setUser(user);
-        toast({
-            title: "Login Successful",
-            description: "You have successfully signed in."
-        });
-        router.replace("/dashboard");
+      if (typeof user !== "string") {
+        setUser(user); // only runs with sign in with email and password
+      }
+      toast({
+        title: "Login Successful",
+        description: "You have successfully signed in.",
+      });
+      router.replace("/dashboard");
     }
-}
+  };
 
-async function signInWithEmailPassword(values: z.infer<typeof formSchema>) {
-  const response = await supabase.auth.signInWithPassword({
+  async function signInWithEmailPassword(values: z.infer<typeof formSchema>) {
+    const { data, error } = await supabase.auth.signInWithPassword({
       email: values.email,
       password: values.password,
-  });
-  handleSignIn(response);
-}
+    });
+    handleSignIn(error, data.user);
+  }
 
-async function signInWithGoogle() {
-const response = await supabase.auth.signInWithOAuth({
-    provider: 'google'
-});
-handleSignIn(response);
-}
+  async function signInWithGoogle() {
+    setIsGoogleSignInLoading(true);
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: "google",
+    });
+
+    handleSignIn(error, "google");
+    setIsGoogleSignInLoading(false);
+  }
 
   return (
     <div className="flex justify-center items-center min-h-screen">
@@ -90,7 +99,10 @@ handleSignIn(response);
           </Link>
         </p>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(signInWithEmailPassword)} className="space-y-5">
+          <form
+            onSubmit={form.handleSubmit(signInWithEmailPassword)}
+            className="space-y-5"
+          >
             <FormField
               control={form.control}
               name="email"
@@ -135,11 +147,12 @@ handleSignIn(response);
               <div className="flex-grow h-px bg-gray-300" />
             </div>
             <div className="flex justify-center">
-              <Button
+              <LoadingButton
                 variant="outline"
                 className="flex items-center space-x-2 my-1 w-full"
                 type="button"
                 onClick={signInWithGoogle}
+                isLoading={isGoogleSignInLoading}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -167,7 +180,7 @@ handleSignIn(response);
                   ></path>
                 </svg>
                 <span>Google</span>
-              </Button>
+              </LoadingButton>
             </div>
             <p className="text-sm text-center">
               By clicking continue, you agree to our{" "}
