@@ -1,11 +1,13 @@
 import React from "react";
-import SideBar from "@/components/SideBar";
 import TabsLayout from "@/components/TabsLayout";
-import { getDonationsByUser } from "./actions";
+import { checkUserLoggedIn, getDonationsByUser } from "./actions";
 import Image from "next/image";
+import NoDonations from "./NoDonations";
 
-async function DashboardPage() {
-  const userDonations = await getDonationsByUser();
+export default async function DashboardPage() {
+  const user = await checkUserLoggedIn();
+
+  const userDonations = await getDonationsByUser(user.id);
 
   const totalAmount = userDonations.reduce(
     (acc, donation) => acc + donation.amount,
@@ -58,28 +60,30 @@ async function DashboardPage() {
         <h2 className="text-sm font-semibold mb-4">
           Most recent causes you have funded
         </h2>
-        {userDonations.slice(0, 5).map((donation) => (
-          <div className="flex items-center mb-4 gap-2" key={donation.id}>
-            <div className="w-14 h-14 rounded-md relative overflow-hidden">
-              <Image
-                src={donation.donations.descriptions.image}
-                alt={donation.donations.title}
-                fill={true}
-                className="object-cover"
-              />
-            </div>
+        {userDonations && userDonations.length > 0 ? (
+          userDonations.slice(0, 5).map((donation) => (
+            <div className="flex items-center mb-4 gap-2" key={donation.id}>
+              <div className="w-14 h-14 rounded-md relative overflow-hidden">
+                <Image
+                  src={donation.donations.descriptions.image}
+                  alt={donation.donations.title}
+                  fill={true}
+                  className="object-cover"
+                />
+              </div>
 
-            <div>
-              <p className="font-bold">{donation.donations.title}</p>
-              <p className="text-gray-500">
-                Your Contribution: Ksh. {donation.amount}
-              </p>
+              <div>
+                <p className="font-bold">{donation.donations.title}</p>
+                <p className="text-gray-500">
+                  Your Contribution: Ksh. {donation.amount}
+                </p>
+              </div>
             </div>
-          </div>
-        ))}
+          ))
+        ) : (
+          <NoDonations />
+        )}
       </div>
     </TabsLayout>
   );
 }
-
-export default DashboardPage;
