@@ -1,6 +1,11 @@
-export const getDonationsByUser = async (): Promise<UserDonation[]> => {
+import { createClient } from "@/utils/supabase/server";
+import { redirect } from "next/navigation";
+
+export const getDonationsByUser = async (
+  uid: string,
+): Promise<UserDonation[]> => {
   const res = await fetch(
-    `${process.env.BASE_URL}/api/users/${"bc4e02e4-c916-44f8-b418-76c7290ec0e7"}/donations`, // TODO: Replace with the actual user ID
+    `${process.env.BASE_URL}/api/users/${uid}/donations`,
     { next: { revalidate: 0 } },
   );
   if (!res.ok) {
@@ -8,4 +13,14 @@ export const getDonationsByUser = async (): Promise<UserDonation[]> => {
   }
 
   return res.json();
+};
+
+export const checkUserLoggedIn = async () => {
+  const supabase = createClient();
+  const { data, error } = await supabase.auth.getUser();
+  if (error || !data?.user) {
+    return redirect("/login");
+  }
+
+  return data.user;
 };
