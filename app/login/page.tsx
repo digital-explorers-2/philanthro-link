@@ -39,33 +39,41 @@ export default function Login() {
       password: "",
     },
   });
-  // Define a submit handler.
-  async function onSubmit(values: z.infer<typeof formSchema>) {
-    try {
-      const { data, error } = await supabase.auth.signInWithPassword({
-        email: values.email,
-        password: values.password,
-      });
 
-      if (error) {
-        throw new Error(error.message);
-      } else {
-        setUser(data.user);
+  async function handleSignIn(response: any) {
+    const { user, error } = response;
+    
+    if (error) {
+        console.error('Login error:', error.message);
         toast({
-          title: "Sign in successful",
-          description: "You have successfully signed in.",
+            variant: "destructive",
+            title: "Login Failed",
+            description: error.message
+        });
+    } else if (user) {
+        setUser(user);
+        toast({
+            title: "Login Successful",
+            description: "You have successfully signed in."
         });
         router.replace("/dashboard");
-      }
-    } catch (error: any) {
-      console.error(error);
-      toast({
-        variant: "destructive",
-        title: "Something went wrong!",
-        description: error.message ?? error.toString(),
-      });
     }
-  }
+}
+
+async function signInWithEmailPassword(values: z.infer<typeof formSchema>) {
+  const response = await supabase.auth.signInWithPassword({
+      email: values.email,
+      password: values.password,
+  });
+  handleSignIn(response);
+}
+
+async function signInWithGoogle() {
+const response = await supabase.auth.signInWithOAuth({
+    provider: 'google'
+});
+handleSignIn(response);
+}
 
   return (
     <div className="flex justify-center items-center min-h-screen">
@@ -82,7 +90,7 @@ export default function Login() {
           </Link>
         </p>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
+          <form onSubmit={form.handleSubmit(signInWithEmailPassword)} className="space-y-5">
             <FormField
               control={form.control}
               name="email"
@@ -131,6 +139,7 @@ export default function Login() {
                 variant="outline"
                 className="flex items-center space-x-2 my-1 w-full"
                 type="button"
+                onClick={signInWithGoogle}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
