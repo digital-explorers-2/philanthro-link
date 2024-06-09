@@ -72,9 +72,7 @@ export default function AddDonation() {
 
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    const {
-      user: { id: user_id },
-    } = useAuth();
+    const { user } = useAuth();
 
     let imageAsBase64 = null;
     if (values.image) {
@@ -87,7 +85,7 @@ export default function AddDonation() {
         body: JSON.stringify({
           ...values,
           image: imageAsBase64,
-          user_id,
+          user_id: user!.id,
         }),
       });
 

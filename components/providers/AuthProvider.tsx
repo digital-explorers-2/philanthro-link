@@ -1,10 +1,11 @@
 "use client";
 import { createClient } from "@/utils/supabase/client";
+import type { User } from "@supabase/supabase-js";
 import { createContext, useContext, useEffect, useState } from "react";
 
 type UserContextType = {
-  user: any | null;
-  setUser: (user: React.SetStateAction<any | null>) => void;
+  user: User | null;
+  setUser: (user: React.SetStateAction<User | null>) => void;
 };
 
 const AuthContext = createContext<UserContextType | null>(null);
@@ -12,7 +13,7 @@ const AuthContext = createContext<UserContextType | null>(null);
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const supabase = createClient();
 
-  const [user, setUser] = useState<any | null>(null);
+  const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
     async function fetchUser() {

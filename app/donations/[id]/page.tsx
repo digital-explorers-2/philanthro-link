@@ -17,6 +17,10 @@ import {
 import AddDonation from "./AddDonation";
 import FooterSecondary from "@/components/FooterSecondary";
 
+type DonationWithUser = Donation & {
+  users: { first_name: string; last_name: string };
+};
+
 const donateMoney = [
   {
     card_title: "15K",
@@ -80,7 +84,7 @@ export default async function DonationDetailsPage({
 }: {
   params: { id: string };
 }) {
-  const donation: Donation = await fetchDonationById(id);
+  const donation: DonationWithUser = await fetchDonationById(id);
 
   return (
     <div className="mx-auto md:h-screen min-h-screen px-3 sm:px-5 md:px-20 lg:px-24 xl:px-24 py-8">
@@ -100,7 +104,10 @@ export default async function DonationDetailsPage({
             <h2 className="text-xl font-medium my-4">
               {donation.descriptions.subtitle}
             </h2>
-            <h4 className="text-sm mb-4">Added by: {donation.user_id}</h4>
+            <h4 className="text-sm mb-4">
+              Added by:{" "}
+              {donation.users.first_name + " " + donation.users.last_name}
+            </h4>
           </div>
           <div>
             {donation.descriptions.summary && (
