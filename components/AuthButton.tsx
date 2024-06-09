@@ -7,7 +7,7 @@ export default function AuthButton() {
 
   return user ? (
     <div className="flex items-center gap-4">
-      Hey, {user.email.split("@")[0]}!
+      Hey, {user.user_metadata.full_name}!
       <Link href="/dashboard" className={buttonVariants()}>
         Dashboard
       </Link>

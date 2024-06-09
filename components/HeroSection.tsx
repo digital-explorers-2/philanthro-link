@@ -1,7 +1,8 @@
 import React from "react";
-import { Button, buttonVariants } from "./ui/button";
+import { buttonVariants } from "./ui/button";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 export default function HeroSection() {
   return (
@@ -15,10 +16,11 @@ export default function HeroSection() {
       <p className="text-base md:text-lg font-normal text-center text-white mb-4 md:mb-8">
         Be a part of the breakthrough and make someone's dream come true.
       </p>
-      <img
+      <Image
         src="/hero-bg.jpg"
         alt="Hero"
-        className="absolute inset-0 object-cover w-full h-full brightness-50 z-[-1]"
+        fill={true}
+        className="absolute inset-0 object-cover w-full h-full brightness-[0.3] z-[-1]"
       />
       <div className="flex flex-row mt-4 gap-4">
         <Link

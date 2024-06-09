@@ -61,6 +61,11 @@ export default function Registration() {
       const { data, error } = await supabase.auth.signUp({
         email: values.email,
         password: values.password,
+        options: {
+          data: {
+            full_name: values.firstName + " " + values.lastName,
+          },
+        },
       });
 
       if (error) {
