@@ -2,8 +2,22 @@
 import React from "react";
 import Link from "next/link";
 import { Home, Plus, List, Edit, LogOut } from "lucide-react";
+import { createClient } from "@/utils/supabase/client";
+import { useRouter } from "next/navigation";
+import { useAuth } from "./providers/AuthProvider";
+import { Button } from "./ui/button";
 
 export default function SideBar() {
+  const { setUser } = useAuth();
+  const router = useRouter();
+
+  const signOut = async () => {
+    const supabase = createClient();
+    await supabase.auth.signOut();
+    setUser(null);
+    return router.replace("/login");
+  };
+
   return (
     <div>
       <aside className="hidden md:block w-64 bg-white text-black h-screen p-6 border-r border-gray-200">
@@ -22,21 +36,21 @@ export default function SideBar() {
           <nav className="flex flex-col space-y-2">
             <Link
               href="/dashboard"
-              className="flex items-center gap-5 text-muted-foreground transition-colors hover:text-primary p-2 text-black"
+              className="flex items-center gap-5 text-muted-foreground transition-colors hover:text-primary p-2"
             >
               <Home className="w-4 h-4" />
               Dashboard
             </Link>
             <Link
               href="/dashboard/add-donations"
-              className="flex items-center gap-5 text-muted-foreground transition-colors hover:text-primary p-2 text-black"
+              className="flex items-center gap-5 text-muted-foreground transition-colors hover:text-primary p-2"
             >
               <Plus className="w-4 h-4" />
               Add Donations
             </Link>
             <Link
               href="/dashboard/donations"
-              className="flex items-center gap-5 text-muted-foreground transition-colors hover:text-primary p-2 text-black"
+              className="flex items-center gap-5 text-muted-foreground transition-colors hover:text-primary p-2"
             >
               <List className="w-4 h-4" />
               Donations
@@ -55,13 +69,14 @@ export default function SideBar() {
               <Edit className="w-4 h-4" />
               Edit Profile
             </Link> */}
-            <Link
-              href="/logout"
-              className="flex items-center gap-5 text-muted-foreground transition-colors hover:text-primary p-2 text-black"
+            <Button
+              variant="link"
+              className="gap-5 justify-start text-muted-foreground transition-colors hover:text-primary p-2 font-light"
+              onClick={signOut}
             >
               <LogOut className="w-4 h-4" />
               Logout
-            </Link>
+            </Button>
           </nav>
         </div>
       </aside>

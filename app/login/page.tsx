@@ -15,7 +15,10 @@ import { Input } from "@/components/ui/input";
 
 import { createClient } from "@/utils/supabase/client";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import Link from "next/link";
+import LoadingButton from "@/components/LoadingButton";
+import { useAuth } from "@/components/providers/AuthProvider";
+import { useToast } from "@/components/ui/use-toast";
 
 const supabase = createClient();
 
@@ -25,9 +28,9 @@ const formSchema = z.object({
 });
 
 export default function Login() {
-  // 1. Define your form.
-  const router = useRouter(); 
-  const [loading, setLoading] = useState(false); 
+  const router = useRouter();
+  const { setUser } = useAuth();
+  const { toast } = useToast();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -38,7 +41,6 @@ export default function Login() {
   });
   // Define a submit handler.
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    setLoading(true);
     try {
       const { data, error } = await supabase.auth.signInWithPassword({
         email: values.email,
@@ -46,20 +48,26 @@ export default function Login() {
       });
 
       if (error) {
-        throw new Error("Error signing in: " + error.message);
+        throw new Error(error.message);
       } else {
-        console.log("User signed in:", data.user);
-        router.replace("/dashboard"); // Assuming '/dashboard' is a valid route
+        setUser(data.user);
+        toast({
+          title: "Sign in successful",
+          description: "You have successfully signed in.",
+        });
+        router.replace("/dashboard");
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error(error);
-    } finally {
-      setLoading(false);
+      toast({
+        variant: "destructive",
+        title: "Something went wrong!",
+        description: error.message ?? error.toString(),
+      });
     }
   }
 
   return (
-    //
     <div className="flex justify-center items-center min-h-screen">
       <div className="p-6 w-full max-w-md">
         <h1 className="text-xl text-center font-bold mt-4 mb-3">
@@ -69,9 +77,9 @@ export default function Login() {
           Sign in to your account.
           <br />
           If you are new to Philathrolink,{" "}
-          <a href="#" className="font-bold">
+          <Link href="/registration" className="font-bold">
             sign up
-          </a>
+          </Link>
         </p>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
@@ -95,7 +103,7 @@ export default function Login() {
                   <FormControl>
                     <Input
                       type="password"
-                      placeholder="New Password"
+                      placeholder="Enter password"
                       {...field}
                     />
                   </FormControl>
@@ -104,13 +112,14 @@ export default function Login() {
               )}
             />
             <div className="flex justify-center">
-              <Button
+              <LoadingButton
                 variant="outline"
                 type="submit"
                 className="mb-1 bg-black text-white w-full"
+                isLoading={form.formState.isSubmitting}
               >
                 Sign in
-              </Button>
+              </LoadingButton>
             </div>
             <div className="flex items-center mb-4">
               <div className="flex-grow h-px bg-gray-300" />

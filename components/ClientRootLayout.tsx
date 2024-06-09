@@ -3,6 +3,7 @@
 import React from "react";
 import NavBar from "@/components/NavBar";
 import { usePathname } from "next/navigation";
+import AuthProvider from "./providers/AuthProvider";
 
 const ClientRootLayout = ({ children }: { children: React.ReactNode }) => {
   const pathname = usePathname();
@@ -13,8 +14,10 @@ const ClientRootLayout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <main className="min-h-screen flex flex-col">
-      {!isDashboard && <NavBar isHomePage={isHomePage} />}
-      {children}
+      <AuthProvider>
+        {!isDashboard && <NavBar isHomePage={isHomePage} />}
+        {children}
+      </AuthProvider>
     </main>
   );
 };

@@ -3,6 +3,7 @@ import { Menu, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
+import AuthButton from "./AuthButton";
 
 const navLinks = [
   {
@@ -51,13 +52,7 @@ export default function NavBar({ isHomePage }: { isHomePage: boolean }) {
         </div>
 
         <div className="hidden md:flex ml-auto">
-          <Link
-            href="#"
-            className="flex items-center gap-2 text-sm transition-colors hover:text-primary"
-          >
-            <Phone className="h-4 w-4 hover:text-primary" />
-            +372 5882 5555
-          </Link>
+          <AuthButton />
         </div>
         <Sheet>
           <SheetTrigger asChild>
@@ -69,7 +64,7 @@ export default function NavBar({ isHomePage }: { isHomePage: boolean }) {
           <SheetContent side="left">
             <nav className="grid gap-6 text-sm font-medium">
               <Link
-                href="#"
+                href="/"
                 className="flex items-center gap-2 text-sm font-semibold"
               >
                 <img src="/logo.png" alt="Logo" className="h-7 w-21 mb-4 mt-" />
@@ -93,7 +88,7 @@ export default function NavBar({ isHomePage }: { isHomePage: boolean }) {
               href="#"
               className="flex items-center gap-2 text-sm font-semibold"
             >
-              <Phone href="#" className="h-5 w-5" />
+              <Phone className="h-5 w-5" />
             </Link>
             <span className="sr-only">Contact us</span>
           </Button>
