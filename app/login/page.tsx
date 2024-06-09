@@ -57,11 +57,13 @@ export default function Login() {
     } else if (user) {
       if (typeof user !== "string") {
         setUser(user); // only runs with sign in with email and password
+
+        toast({
+          title: "Login Successful",
+          description: "You have successfully signed in.",
+        });
       }
-      toast({
-        title: "Login Successful",
-        description: "You have successfully signed in.",
-      });
+
       router.replace("/dashboard");
     }
   };
