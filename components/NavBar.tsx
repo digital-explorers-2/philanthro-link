@@ -56,7 +56,11 @@ export default function NavBar({ isHomePage }: { isHomePage: boolean }) {
         </div>
         <Sheet>
           <SheetTrigger asChild>
-            <Button size="icon" className="shrink-0 md:hidden bg-transparent">
+            <Button
+              size="icon"
+              className="shrink-0 md:hidden"
+              variant={isHomePage ? "custom" : "outline"}
+            >
               <Menu className="h-5 w-5" />
               <span className="sr-only">Toggle navigation menu</span>
             </Button>

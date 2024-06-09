@@ -13,7 +13,10 @@ export default function AuthButton() {
       </Link>
     </div>
   ) : (
-    <Link href="/login" className={buttonVariants()}>
+    <Link
+      href="/login"
+      className={`${buttonVariants({ variant: "link" })} text-white hover:text-primary`}
+    >
       Login
     </Link>
   );
