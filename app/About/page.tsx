@@ -26,7 +26,7 @@ export default function AboutPage() {
             </p>
           </div>
           <div className="w-full md:w-1/2 flex items-start justify-center">
-            <img className="size-15" src="/about.jpeg" alt="About us" />
+            <img className="size-15" src="/About.jpeg" alt="About us" />
           </div>
         </div>
       </div>
