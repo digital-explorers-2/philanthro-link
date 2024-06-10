@@ -55,6 +55,8 @@ const formSchema = z.object({
 });
 
 export default function AddDonation() {
+  const { user } = useAuth();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -72,8 +74,6 @@ export default function AddDonation() {
 
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    const { user } = useAuth();
-
     let imageAsBase64 = null;
     if (values.image) {
       imageAsBase64 = await fileToBase64(values.image[0]);
