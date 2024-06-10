@@ -10,7 +10,7 @@ export async function GET(request: Request, { params }: { params: Params }) {
 
   const { data: donation, error } = await supabase
     .from("donations")
-    .select(`*, descriptions(*), users(first_name, last_name)`)
+    .select(`*, descriptions(*)`)
     .eq("id", params.id)
     .single();
 
