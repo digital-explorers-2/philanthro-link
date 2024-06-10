@@ -49,83 +49,263 @@ exports[`Landing page snapshot unchanged renders about section 1`] = `
           >
             PhilanthroLink is a crowdfunding platform dedicated to connecting donors with causes they care about. It provides a seamless way for individuals and organizations to donate to verified charitable projects while fostering a sense of community and collaboration in the realm of philanthropy.
           </p>
-          <a
-            class="text-black underline block md:text-left pb-6"
-            href="#"
-          >
-            Read more
-          </a>
           <h3
             class="text-2xl font-bold mt-8 mb-4 text-center md:text-left pb-6"
           >
             Frequently asked questions
           </h3>
           <div
-            class="bg-white shadow-md rounded-lg mb-4 p-4"
+            class="w-full"
+            data-orientation="vertical"
           >
             <div
+              class="border-b"
+              data-orientation="vertical"
               data-state="closed"
             >
-              <button
-                aria-controls="radix-:r0:"
-                aria-expanded="false"
-                class="font-semibold text-primary cursor-pointer my-2"
+              <h3
+                class="flex"
+                data-orientation="vertical"
                 data-state="closed"
-                type="button"
               >
-                Lorem ipsum sit dolor?
-              </button>
+                <button
+                  aria-controls="radix-:r1:"
+                  aria-expanded="false"
+                  class="flex flex-1 items-center justify-between py-4 font-medium transition-all hover:underline [&[data-state=open]>svg]:rotate-180"
+                  data-orientation="vertical"
+                  data-radix-collection-item=""
+                  data-state="closed"
+                  id="radix-:r0:"
+                  type="button"
+                >
+                  How can I donate through PhilanthroLink?
+                  <svg
+                    class="lucide lucide-chevron-down h-4 w-4 shrink-0 transition-transform duration-200"
+                    fill="none"
+                    height="24"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="m6 9 6 6 6-6"
+                    />
+                  </svg>
+                </button>
+              </h3>
               <div
-                data-state="closed"
-                hidden=""
-                id="radix-:r0:"
-                style=""
-              />
-            </div>
-          </div>
-          <div
-            class="bg-white shadow-md rounded-lg mb-4 p-4"
-          >
-            <div
-              data-state="closed"
-            >
-              <button
-                aria-controls="radix-:r1:"
-                aria-expanded="false"
-                class="font-semibold text-primary cursor-pointer my-2"
-                data-state="closed"
-                type="button"
-              >
-                Lorem ipsum sit dolor?
-              </button>
-              <div
+                aria-labelledby="radix-:r0:"
+                class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+                data-orientation="vertical"
                 data-state="closed"
                 hidden=""
                 id="radix-:r1:"
-                style=""
+                role="region"
+                style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
               />
             </div>
-          </div>
-          <div
-            class="bg-white shadow-md rounded-lg mb-8 p-4"
-          >
             <div
+              class="border-b"
+              data-orientation="vertical"
               data-state="closed"
             >
-              <button
-                aria-controls="radix-:r2:"
-                aria-expanded="false"
-                class="font-semibold text-primary cursor-pointer my-2"
+              <h3
+                class="flex"
+                data-orientation="vertical"
                 data-state="closed"
-                type="button"
               >
-                Lorem ipsum sit dolor?
-              </button>
+                <button
+                  aria-controls="radix-:r3:"
+                  aria-expanded="false"
+                  class="flex flex-1 items-center justify-between py-4 font-medium transition-all hover:underline [&[data-state=open]>svg]:rotate-180"
+                  data-orientation="vertical"
+                  data-radix-collection-item=""
+                  data-state="closed"
+                  id="radix-:r2:"
+                  type="button"
+                >
+                  Are the charitable projects on PhilanthroLink verified?
+                  <svg
+                    class="lucide lucide-chevron-down h-4 w-4 shrink-0 transition-transform duration-200"
+                    fill="none"
+                    height="24"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="m6 9 6 6 6-6"
+                    />
+                  </svg>
+                </button>
+              </h3>
               <div
+                aria-labelledby="radix-:r2:"
+                class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+                data-orientation="vertical"
                 data-state="closed"
                 hidden=""
-                id="radix-:r2:"
-                style=""
+                id="radix-:r3:"
+                role="region"
+                style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+              />
+            </div>
+            <div
+              class="border-b"
+              data-orientation="vertical"
+              data-state="closed"
+            >
+              <h3
+                class="flex"
+                data-orientation="vertical"
+                data-state="closed"
+              >
+                <button
+                  aria-controls="radix-:r5:"
+                  aria-expanded="false"
+                  class="flex flex-1 items-center justify-between py-4 font-medium transition-all hover:underline [&[data-state=open]>svg]:rotate-180"
+                  data-orientation="vertical"
+                  data-radix-collection-item=""
+                  data-state="closed"
+                  id="radix-:r4:"
+                  type="button"
+                >
+                  Can I create a fundraising campaign on PhilanthroLink?
+                  <svg
+                    class="lucide lucide-chevron-down h-4 w-4 shrink-0 transition-transform duration-200"
+                    fill="none"
+                    height="24"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="m6 9 6 6 6-6"
+                    />
+                  </svg>
+                </button>
+              </h3>
+              <div
+                aria-labelledby="radix-:r4:"
+                class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+                data-orientation="vertical"
+                data-state="closed"
+                hidden=""
+                id="radix-:r5:"
+                role="region"
+                style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+              />
+            </div>
+            <div
+              class="border-b"
+              data-orientation="vertical"
+              data-state="closed"
+            >
+              <h3
+                class="flex"
+                data-orientation="vertical"
+                data-state="closed"
+              >
+                <button
+                  aria-controls="radix-:r7:"
+                  aria-expanded="false"
+                  class="flex flex-1 items-center justify-between py-4 font-medium transition-all hover:underline [&[data-state=open]>svg]:rotate-180"
+                  data-orientation="vertical"
+                  data-radix-collection-item=""
+                  data-state="closed"
+                  id="radix-:r6:"
+                  type="button"
+                >
+                  How can I get in touch with PhilanthroLink?
+                  <svg
+                    class="lucide lucide-chevron-down h-4 w-4 shrink-0 transition-transform duration-200"
+                    fill="none"
+                    height="24"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="m6 9 6 6 6-6"
+                    />
+                  </svg>
+                </button>
+              </h3>
+              <div
+                aria-labelledby="radix-:r6:"
+                class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+                data-orientation="vertical"
+                data-state="closed"
+                hidden=""
+                id="radix-:r7:"
+                role="region"
+                style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
+              />
+            </div>
+            <div
+              class="border-b"
+              data-orientation="vertical"
+              data-state="closed"
+            >
+              <h3
+                class="flex"
+                data-orientation="vertical"
+                data-state="closed"
+              >
+                <button
+                  aria-controls="radix-:r9:"
+                  aria-expanded="false"
+                  class="flex flex-1 items-center justify-between py-4 font-medium transition-all hover:underline [&[data-state=open]>svg]:rotate-180"
+                  data-orientation="vertical"
+                  data-radix-collection-item=""
+                  data-state="closed"
+                  id="radix-:r8:"
+                  type="button"
+                >
+                  Can I volunteer with PhilanthroLink?
+                  <svg
+                    class="lucide lucide-chevron-down h-4 w-4 shrink-0 transition-transform duration-200"
+                    fill="none"
+                    height="24"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    width="24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="m6 9 6 6 6-6"
+                    />
+                  </svg>
+                </button>
+              </h3>
+              <div
+                aria-labelledby="radix-:r8:"
+                class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down"
+                data-orientation="vertical"
+                data-state="closed"
+                hidden=""
+                id="radix-:r9:"
+                role="region"
+                style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"
               />
             </div>
           </div>
@@ -272,22 +452,30 @@ exports[`Landing page snapshot unchanged renders hero section 1`] = `
     </p>
     <img
       alt="Hero"
-      class="absolute inset-0 object-cover w-full h-full brightness-50 z-[-1]"
-      src="/hero-bg.jpg"
+      class="absolute inset-0 object-cover w-full h-full brightness-[0.3] z-[-1]"
+      data-nimg="fill"
+      decoding="async"
+      loading="lazy"
+      sizes="100vw"
+      src="/_next/image?url=%2Fhero-bg.jpg&w=3840&q=75"
+      srcset="/_next/image?url=%2Fhero-bg.jpg&w=640&q=75 640w, /_next/image?url=%2Fhero-bg.jpg&w=750&q=75 750w, /_next/image?url=%2Fhero-bg.jpg&w=828&q=75 828w, /_next/image?url=%2Fhero-bg.jpg&w=1080&q=75 1080w, /_next/image?url=%2Fhero-bg.jpg&w=1200&q=75 1200w, /_next/image?url=%2Fhero-bg.jpg&w=1920&q=75 1920w, /_next/image?url=%2Fhero-bg.jpg&w=2048&q=75 2048w, /_next/image?url=%2Fhero-bg.jpg&w=3840&q=75 3840w"
+      style="position: absolute; height: 100%; width: 100%; left: 0px; top: 0px; right: 0px; bottom: 0px; color: transparent;"
     />
     <div
       class="flex flex-row mt-4 gap-4"
     >
-      <button
+      <a
         class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 py-2 rounded-full px-10"
+        href="#donations"
       >
         Donate now
-      </button>
-      <button
+      </a>
+      <a
         class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input hover:bg-accent h-10 py-2 rounded-full px-10 bg-transparent text-white hover:text-black"
+        href="/about"
       >
         About us
-      </button>
+      </a>
     </div>
   </div>
 </div>
