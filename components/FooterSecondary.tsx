@@ -8,7 +8,6 @@ function FooterSecondary() {
         <div className="w-full lg:w-auto lg:mr-auto">
           <h2 className="md:my-4 text-xl font-normal">PhilanthroLink</h2>
           <div className="flex flex-column md:mt-20">
-
             {/* <!-- Facebook Icon--> */}
             <svg
               width="40"
