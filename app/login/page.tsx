@@ -54,17 +54,17 @@ export default function Login() {
         title: "Login Failed",
         description: error.message,
       });
+      return
     } else if (user) {
       if (typeof user !== "string") {
-        setUser(user); // only runs with sign in with email and password
-
-        toast({
-          title: "Login Successful",
-          description: "You have successfully signed in.",
-        });
+        // only runs with sign in with email and password
+        setUser(user);
+        router.replace("/dashboard");
       }
-
-      router.replace("/dashboard");
+      toast({
+        title: "Login Successful",
+        description: "You have successfully signed in.",
+      });
     }
   };
 
@@ -80,6 +80,9 @@ export default function Login() {
     setIsGoogleSignInLoading(true);
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
+      options: {
+        redirectTo: `https://philanthro-link.vercel.app/auth/callback?next=/dashboard`
+      },
     });
 
     handleSignIn(error, "google");
