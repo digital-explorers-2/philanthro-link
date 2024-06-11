@@ -60,11 +60,12 @@ export default function Login() {
         // only runs with sign in with email and password
         setUser(user);
         router.replace("/dashboard");
+
+        toast({
+          title: "Login Successful",
+          description: "You have successfully signed in.",
+        });
       }
-      toast({
-        title: "Login Successful",
-        description: "You have successfully signed in.",
-      });
     }
   };
 
@@ -81,7 +82,7 @@ export default function Login() {
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: `https://philanthro-link.vercel.app/auth/callback?next=/dashboard`
+        redirectTo: `https://philanthro-link.vercel.app/auth/callback`
       },
     });
 
